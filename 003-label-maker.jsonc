@@ -1,0 +1,190 @@
+{
+    "id": "label-maker",
+    "title": "Label Maker Troubleshooting",
+    "description": "Interactive guide to solve issues with the label maker",
+    "startingQuestion": "Title",
+    "color": "#644e9b",
+    "image": "https://pi-space.crunchlabs.com/media/original/label-maker.webp",
+    "questions": {
+        "Title": {
+            "question": "My Label Maker isn't working",
+            "answers": [
+                {
+                    "answer": "My screen isn't working",
+                    "nextQuestion": "Screen"
+                },
+                {
+                    "answer": "A tape motor isn't working",
+                    "nextQuestion": "Motor"
+                },
+                {
+                    "answer": "My servo isn't working",
+                    "nextQuestion": "Servo"
+                },
+                {
+                    "answer": "My joystick isn't working",
+                    "nextQuestion": "Joystick"
+                },
+                {
+                    "answer": "It won't turn on",
+                    "nextQuestion": "Power"
+                }
+            ]
+        },
+        "Screen": {
+            "question": "Push the arduino firmly into the breadboard, it might click into place. Does it work now?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "CheckBacklight"
+                }
+            ]
+        },
+        "CheckBacklight": {
+            "question": "Is the backlight on?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "ReplaceLCD"
+                },
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "LCDAnotherArduino"
+                }
+            ]
+        },
+        "ReplaceLCD": {
+            "question": "Contact CrunchLabs for a replacement screen",
+            "answers": []
+        },
+        "LCDAnotherArduino": {
+            "question": "Try uploading Label Maker code to a different Arduino from ide.crunchlabs.com, and use this arduino. Does it work now?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "ReplaceLCD"
+                },
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "ReplacementArduino"
+                }
+            ]
+        },
+        "ReplacementArduino": {
+            "question": "Contact CrunchLabs for a replacement Arduino",
+            "answers": []
+        },
+        "Motor": {
+            "question": "Is the motor going backwards?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "BackwardsFix"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "MotorAnotherArduino"
+                }
+            ]
+        },
+        "BackwardsFix": {
+            "question": "Take the 4 signal wires for the backwards motor, and flip them around in the breadboard",
+            "answers": []
+        },
+        "MotorAnotherArduino": {
+            "question": "Try uploading Label Maker code to a different Arduino from ide.crunchlabs.com, and use this arduino. Does it work now?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "SwapMotorsCheck"
+                }
+            ]
+        },
+        "SwapMotorsCheck": {
+            "question": "If a motor isn't working, swap which motor is plugged into which driver, you will need to unscrew a driver from the wall to reach. Does the broken axis swap to being the other motor?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "ReplacementDriver"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "ReplacementMotor"
+                }
+            ]
+        },
+        "ReplacementDriver": {
+            "question": "Contact CrunchLabs for a replacement driver",
+            "answers": []
+        },
+        "ReplacementMotor": {
+            "question": "Contact CrunchLabs for a replacement Stepper Motor",
+            "answers": []
+        },
+        "Servo": {
+            "question": "Is the servo moving or making sound?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "ReplacementServo"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "ServoHelp"
+                }
+            ]
+        },
+        "ReplacementServo": {
+            "question": "Contact CrunchLabs for a replacement servo",
+            "answers": []
+        },
+        "ServoHelp": {
+            "question": "Contact CrunchLabs for additional help",
+            "answers": []
+        },
+        "Joystick": {
+            "question": "Push the arduino firmly into the breadboard, it might click into place. Does it work now?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "ReplacementJoystick"
+                }
+            ]
+        },
+        "ReplacementJoystick": {
+            "question": "Contact CrunchLabs for a replacement joystick",
+            "answers": []
+        },
+        "Power": {
+            "question": "Push the arduino firmly into the breadboard, it might click into place. Did it turn on?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "CheckBackwardsWires"
+                }
+            ]
+        },
+        "CheckBackwardsWires": {
+            "question": "Make sure you don't have red and black wires backwards. Does it turn on now?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "TryAnotherBattery"
+                }
+            ]
+        },
+        "TryAnotherBattery": {
+            "question": "Try a charged battery from another Hack Pack. Does it turn on now?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "ReplacementBattery"
+                }
+            ]
+        },
+        "ReplacementBattery": {
+            "question": "Charge your battery, if it still doesn't work contact CrunchLabs for a replacement battery",
+            "answers": []
+        }
+    }
+}

@@ -1,0 +1,218 @@
+{
+    "id": "balance-bot",
+    "title": "Balance Bot Troubleshooting",
+    "description": "Interactive guide to solve issues with the Balance Bot",
+    "startingQuestion": "Title",
+    "color": "#644e9b",
+    "image": "https://pi-space.crunchlabs.com/media/original/balance-bot.webp",
+    "questions": {
+        "Title": {
+            "question": "My Balance Bot Troubleshooting",
+            "answers": [
+                {
+                    "answer": "Start",
+                    "nextQuestion": "LEDBarLightingUp"
+                }
+            ]
+        },
+        "LEDBarLightingUp": {
+            "question": "Is the LED bar in the head lighting up?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "CalibrationComplete"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "PowerIndicatorLED"
+                }
+            ]
+        },
+        "PowerIndicatorLED": {
+            "question": "Does the power indicator LED on the main circuit board light up?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "ResetAndCalibrate"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "CheckPowerPCB"
+                }
+            ]
+        },
+        "CheckPowerPCB": {
+            "question": "The main power PCB isn't receiving power. Check that the USB power cable is properly plugged in, both at the USB-C junction on the power PCB, and at the power bank in the head - sometimes the power bank slot doesn't get pushed in all the way. Also try clicking the button on the power bank, and make sure that the power bank is charged. Does the power LED come on now?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "MicrocontrollerLEDs"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "IsolatePowerIssue"
+                }
+            ]
+        },
+        "IsolatePowerIssue": {
+            "question": "Try removing the power PCB and testing it with a separate power source and cable. Do the same for the cable and power bank separately to find what is causing the malfunction. Once isolated, request a replacement of that specific component."
+        },
+        "ResetAndCalibrate": {
+            "question": "Try pressing the reset button on the microcontroller and calibrating again. Make sure you hold the bot upright and still during calibration. You can also set useCalibration to FALSE in the IDE (default in the stock code) or use the Calibration (IMUZero) code in the IDE to set permanent calibration offsets which are unique to your MPU sensor. Does the bot complete calibration now?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "CheckLEDWires"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "OpenStockCode"
+                }
+            ]
+        },
+        "CheckLEDWires": {
+            "question": "Check that the LED wires are in the correct locations: black = GND, red > 5V, purple > D11. Then continue to motor driver check.",
+            "answers": [
+                {
+                    "answer": "Continue",
+                    "nextQuestion": "CheckMotorDriver"
+                }
+            ]
+        },
+        "OpenStockCode": {
+            "question": "Open the latest Balance Bot stock code in the IDE. Set useSerial to TRUE, and useCalibration to TRUE, then upload the code and open the Serial Monitor. This will print out what's happening on the robot. At startup, the calibration should print out a series of dots representing successful rounds of calibration, like this: . . . . . . . . . . . If the calibration is failing due to an error with the MPU, it will instead print out a series of stars, like this: * * * If the bot is failing to complete calibration, it likely will be printing stars. In this case, try removing the MPU and replugging it into the main power PCB - make sure all 6 pins are in the correct ports, and the bracket is firmly attached. Then try calibrating again. If you find that you still get stars, please reach out to customer service for a replacement MPU6500."
+        },
+        "MicrocontrollerLEDs": {
+            "question": "Are the LEDs on the microcontroller lighting up?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "CheckMotorsWired"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "CheckMicrocontrollerInsertion"
+                }
+            ]
+        },
+        "CheckMicrocontrollerInsertion": {
+            "question": "Check that the microcontroller is inserted into the correct pins, and not misplaced by 1 position. To check this, see if there is solder pin sticking out the back end which are not plugged into a port. Does the microcontroller light up now?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "LEDBarStillNotWorking"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "TestMicrocontrollerUSB"
+                }
+            ]
+        },
+        "LEDBarStillNotWorking": {
+            "question": "If the LED bar still doesn't light up, you can test it separately on your Sand Garden kit if you have one. Consider the LED bar itself if the problem, otherwise, request a replacement if everything else seems to be working right."
+        },
+        "TestMicrocontrollerUSB": {
+            "question": "Try removing the microcontroller and connecting it to your computer with a data-capable USB cable. Does it light up when connected to your computer? Also good to check if you can upload code here too). If not, request a replacement microcontroller. If so, try reflashing the stock code and reseating the microcontroller in the power PCB, and check for any flipped power wires which could cause a short circuit. If you notice the lights on the microcontroller go out ONLY when it's plugged into the power PCB, that indicates that red and black wires are flipped somewhere, or the power PCB itself is defective."
+        },
+        "CalibrationComplete": {
+            "question": "Does the calibration step complete? (LED's pink 'blush' changes to rainbow)",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "MotorsStartSpinning"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "ResetAndCalibrate"
+                }
+            ]
+        },
+        "MotorsStartSpinning": {
+            "question": "Do the motors start spinning after calibration?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "CheckMotorDriver"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "CheckMotorDriver"
+                }
+            ]
+        },
+        "CheckMotorDriver": {
+            "question": "Check that the DRV8835 motor driver is properly installed - ensure that all pins are in ports (not misplaced by 1 position) and that the chip has the correct orientation: with the hack pack logo in the lower right corner. If the chip is correctly installed, you've already tried uploading new software and power-cycling, request a replacement motor driver from CrunchLabs customer service.",
+            "answers": [
+                {
+                    "answer": "Continue",
+                    "nextQuestion": "BalancingBehavior"
+                }
+            ]
+        },
+        "BalancingBehavior": {
+            "question": "Assuming the robot is not properly balancing despite the motors spinning, which of the following best describes what's happening?",
+            "answers": [
+                {
+                    "answer": "Falls immediately, motors full speed one way without changing",
+                    "nextQuestion": "TriesToBalanceDrivesOff"
+                },
+                {
+                    "answer": "Tries to balance, but tends to drive off and fall in one direction",
+                    "nextQuestion": "AdjustInitAngle"
+                },
+                {
+                    "answer": "Balance is consistently bad - falling both ways or suddenly dropping",
+                    "nextQuestion": "CheckMotorsWired"
+                }
+            ]
+        },
+        "TriesToBalanceDrivesOff": {
+            "question": "Tries to balance, but tends to drive off and fall in one direction. Continue to init_angle adjustment.",
+            "answers": [
+                {
+                    "answer": "Continue",
+                    "nextQuestion": "AdjustInitAngle"
+                }
+            ]
+        },
+        "AdjustInitAngle": {
+            "question": "In the software, try adjusting the 'init_angle' variable in the opposite direction from the direction your robot seems to favor. This is the angle that the robot treats as 'balanced', however if you're MPU chip is tilted or weight distribution is different it can up to a few degrees (+ or -) off from zero. If it's still being weird continue...",
+            "answers": [
+                {
+                    "answer": "Still having issues",
+                    "nextQuestion": "CheckMotorsWired"
+                }
+            ]
+        },
+        "CheckMotorsWired": {
+            "question": "Check that the motors are wired correctly, with red wires facing in.",
+            "answers": [
+                {
+                    "answer": "Continue",
+                    "nextQuestion": "CheckBatteryCharge"
+                }
+            ]
+        },
+        "CheckBatteryCharge": {
+            "question": "Check that the battery pack is above 50% charge - sometimes strange behavior can be a result of low battery.",
+            "answers": [
+                {
+                    "answer": "Continue",
+                    "nextQuestion": "RunCompleteCalibration"
+                }
+            ]
+        },
+        "RunCompleteCalibration": {
+            "question": "Run a more complete calibration routine using the IMUzero sketch to set permanent offsets for your specific MPU chip, and check that the motors are functioning properly and in good condition.",
+            "answers": [
+                {
+                    "answer": "Continue",
+                    "nextQuestion": "FinalTroubleshooting"
+                }
+            ]
+        },
+        "FinalTroubleshooting": {
+            "question": "If you reach this point and are still seeing strange behavior / consistent failure to balance at all, head over to the Hack Pack Discord and submit a video to the troubleshooting page - by troubleshooting with other users and CrunchLabs designers we may identify issues we haven't seen before! Otherwise, reach out to help@crunchlabs.com"
+        }
+    }
+}

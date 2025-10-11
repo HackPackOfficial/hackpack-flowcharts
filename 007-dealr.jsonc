@@ -1,0 +1,237 @@
+{
+    "id": "dealr",
+    "title": "Card Dealer Troubleshooting",
+    "description": "An interactive guide to solve common issues with your DEALR card-dealing robot.",
+    "startingQuestion": "Title",
+    "color": "#d94d3b",
+    "image": "https://pi-space.crunchlabs.com/media/original/card_dealing_bot.png",
+    "questions": {
+        "Title": {
+            "question": "DEALR Troubleshooting",
+            "answers": [
+                {
+                    "answer": "Let's Get Started!",
+                    "nextQuestion": "Intro"
+                }
+            ]
+        },
+        "Intro": {
+            "question": "My robot successfully turned on! If not, check out our 'Robot isn't turning on' guide, then come back here if you still have issues.",
+            "answers": [
+                {
+                    "answer": "Okay, it's on!",
+                    "nextQuestion": "DisplayOn"
+                }
+            ]
+        },
+        "DisplayOn": {
+            "question": "When the robot is turned on, does the display turn on?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "DisplayError"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "CheckJSTConnections"
+                }
+            ]
+        },
+        "CheckJSTConnections": {
+            "question": "Squeeze the JST connectors on the back of DEALR's head to make sure they are fully pressed in. Ensure the header cable is plugged into the top header of pins, with the red stripe facing toward DEALR. Restart DEALR. If the screen is still off, you may have a hardware issue and should reach out to support."
+        },
+        "DisplayError": {
+            "question": "Does the display say 'ERROR'?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "CustomGameModeInfo"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "SuccessfulDealAttempt"
+                }
+            ]
+        },
+        "CustomGameModeInfo": {
+            "question": "This happens because the robot's default code is trying to home to a 'marked' card. Restart your robot to temporarily fix this. To permanently fix this, upload the latest code to DEALR."
+        },
+        "SuccessfulDealAttempt": {
+            "question": "Navigate to 'R-TOOLS' > 'DEAL', then press 'Go Fishy'. Are you able to successfully deal a card?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "MultiplayerTest"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "CalibrateLED"
+                }
+            ]
+        },
+        "CalibrateLED": {
+            "question": "Use your screwdriver to rotate the small blue potentiometer on the back of DEALR's head until the left LED turns off. Push a card halfway in front of the gate. Rotate the potentiometer the other way until the LED turns back *on* only when a card is present. Remove the card and restart."
+        },
+        "MultiplayerTest": {
+            "question": "Place the red tag and at least one other color tag around DEALR's base. From the menu, select '1. Go Fishy'. The robot should deal 5 cards to each player. What is the issue?",
+            "answers": [
+                {
+                    "answer": "Card doesn't fully exit",
+                    "nextQuestion": "CardPastGateCheck"
+                },
+                {
+                    "answer": "Card gets jammed",
+                    "nextQuestion": "CardJammedCheck"
+                }
+            ]
+        },
+        "CardPastGateCheck": {
+            "question": "While dealing, does the card move past the gate and the red gate?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "HopperHeightLowFix"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "SingleDealAgain"
+                }
+            ]
+        },
+        "HopperHeightLowFix": {
+            "question": "Use the motor height adjustment knob to lower the motor so DEALR is less likely to miss grabbing a card. The flywheel should just barely touch the floor of the robot's mouth."
+        },
+        "SingleDealAgain": {
+            "question": "Running the 'Deal Single Card' test again, does a card make it past the gate?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "HopperHeightHighFix"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "FinalHelp"
+                }
+            ]
+        },
+        "HopperHeightHighFix": {
+            "question": "Use the motor height adjustment knob to raise the motor so that it can pull the card out of the hopper floor. The flywheel should now just barely touch the floor of the robot's mouth."
+        },
+        "CardJammedCheck": {
+            "question": "Does the card get jammed after it enters the wide range of the flywheel and stop?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "CardsStuckInMouthCheck"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "CommonJamCauses"
+                }
+            ]
+        },
+        "CardsStuckInMouthCheck": {
+            "question": "Do cards keep getting stuck in the dealer's mouth?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "DealTooManyCheck"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "CommonJamCauses"
+                }
+            ]
+        },
+        "DealTooManyCheck": {
+            "question": "Is the robot dealing a different number of cards to each player?",
+            "answers": [
+                {
+                    "answer": "Yes or No",
+                    "nextQuestion": "SensorColorConfusion"
+                }
+            ]
+        },
+        "SensorColorConfusion": {
+            "question": "This can happen when the robot confuses two colors (e.g., 'yellow' as 'green'). Removing or moving one of the tags usually fixes this.",
+            "answers": [
+                {
+                    "answer": "Test card marking",
+                    "nextQuestion": "TestMarkingFunctionality"
+                }
+            ]
+        },
+        "TestMarkingFunctionality": {
+            "question": "Using your UV marker, mark a few cards. Charge them for 60 seconds and shuffle with unmarked cards. Place the red tag and one other color tag around the base. Navigate to 'R-TOOLS' > '3. CALIBRATE MARKED CARDS'. Does DEALR successfully separate the cards?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "MarkingSuccess"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "TuneUVSensor"
+                }
+            ]
+        },
+        "MarkingSuccess": {
+            "question": "Woohoo! Your DEALR's card marking functionality is calibrated!"
+        },
+        "TuneUVSensor": {
+            "question": "You may need to tune the UV sensor. Navigate to 'R-TOOLS' > '4. UV SENSOR TUNER'. Place a marked card in the dealer, press the green button, and let it deal five. The average value shown is your new threshold. Run the calibration again to confirm it works.",
+            "answers": [
+                {
+                    "answer": "I'm still having issues",
+                    "nextQuestion": "FinalHelp"
+                }
+            ]
+        },
+        "CommonJamCauses": {
+            "question": "Several factors can cause card jams. What do you think it is?",
+            "answers": [
+                {
+                    "answer": "Low Battery",
+                    "nextQuestion": "LowBattery"
+                },
+                {
+                    "answer": "Improper Tuning",
+                    "nextQuestion": "ImproperTuning"
+                },
+                {
+                    "answer": "Sticky Cards / Wobbling Motor",
+                    "nextQuestion": "StickyCardsWobblingMotor"
+                }
+            ]
+        },
+        "LowBattery": {
+            "question": "Low Battery: A low battery can cause the flywheel motor to spin slower. Try swapping to a fully charged battery.",
+            "answers": [
+                {
+                    "answer": "Still having issues",
+                    "nextQuestion": "FinalHelp"
+                }
+            ]
+        },
+        "ImproperTuning": {
+            "question": "Improper Tuning: Try tuning the single-card deal and flywheel height adjustment knobs. If the gate is too low or too high, it can cause jams. If the flywheel stalls, raise it; if it's slipping, lower it.",
+            "answers": [
+                {
+                    "answer": "Still having issues",
+                    "nextQuestion": "FinalHelp"
+                }
+            ]
+        },
+        "StickyCardsWobblingMotor": {
+            "question": "Sticky Cards: Try a different deck of cards, or dust them with baby powder. Wobbling Motor: If the motor mount wobbles, you may need to apply a small drop of hot glue to secure it against the adjacent wood wall.",
+            "answers": [
+                {
+                    "answer": "Still having issues",
+                    "nextQuestion": "FinalHelp"
+                }
+            ]
+        },
+        "FinalHelp": {
+            "question": "If you've tried these fixes and are still having issues, check out Discord or Customer Support for more help. Advanced solutions might include cleaning the flywheel, sanding a concave shape into it, or adding hot glue to increase its mass."
+        }
+    }
+}

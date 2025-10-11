@@ -1,0 +1,160 @@
+{
+    "id": "IDE",
+    "title": "IDE Troubleshooting",
+    "description": "Interactive guide to solve common IDE issues",
+    "startingQuestion": "Title",
+    "color": "#57899E",
+    "questions": {
+        "Title": {
+            "question": "Have you watched the video on the [Start Here](https://ide.crunchlabs.com/downloads) page?",
+            "blocks": [
+                {
+                    "type": "video",
+                    "id": "downloads-video",
+                    "content": {
+                        "url": "https://www.youtube.com/embed/rA9CwUOBBgE?si=1KesjPL61WYOJzu",
+                        "light": false,
+                        "controls": true
+                    }
+                }
+            ],
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "GoWatchVideo"
+                },
+                // Empty arrow for spacing, it loops better
+                {
+                    "answer": null,
+                    "nextQuestion": "OS",
+                    "customArrow": "~~~"
+                },
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "OS",
+                    "customArrow": "--->"
+                }
+            ]
+        },
+        "GoWatchVideo": {
+            "question": "Please watch the video on the [Start Here](https://ide.crunchlabs.com/downloads) page before proceeding.",
+            "answers": [
+                {
+                    "answer": "Proceed",
+                    "nextQuestion": "Title"
+                }
+            ]
+        },
+        "OS": {
+            "question": "What Operating System do you use? (What type of computer)",
+            "answers": [
+                {
+                    "answer": "Windows",
+                    "nextQuestion": "Windows"
+                },
+                {
+                    "answer": "Mac",
+                    "nextQuestion": "Mac"
+                },
+                {
+                    "answer": "Chromebook",
+                    "nextQuestion": "Chromebook"
+                },
+                {
+                    "answer": "Linux",
+                    "nextQuestion": "Linux"
+                },
+                {
+                    "answer": "Other",
+                    "nextQuestion": "Other"
+                }
+            ]
+        },
+        "Chromebook": {
+            "question": "Chromebooks are not officially supported. However, you can still use the Arduino Cloud if you are willing to figure things out yourself.",
+            "answers": []
+        },
+        "Linux": {
+            "question": "Request help in #ide-help-chat of the Hack Pack discord.",
+            "answers": []
+        },
+        "Other": {
+            "question": "Request help in #ide-help-chat of the Hack Pack discord.",
+            "answers": []
+        },
+        "Windows": {
+            "question": "If you click the up arrow near the wifi icon, do you see a white circle with the Hack Pack logo?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "WindowsInstallAgent"
+                },
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "BrowserCheck"
+                }
+            ]
+        },
+        "Mac": {
+            "question": "Do you see a white circle with the hack pack logo on the right side of the bar at the top of your screen?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "MacInstallAgent"
+                },
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "BrowserCheck"
+                }
+            ]
+        },
+        "WindowsInstallAgent": {
+            "question": "If you have already installed the create agent as in the video, you likely need to run it as administrator. Open windows search, type \"Crunchlabs\", right-click the item ***without*** the word \"setup\", and click \"Run As Administrator\"",
+            "answers": []
+        },
+        "MacInstallAgent": {
+            "question": "Refer to the downloads video for how to install the create agent on mac. If you need additional help, ask in #ide-help-chat",
+            "answers": []
+        },
+        "BrowserCheck": {
+            "question": "Are you using Chrome as your browser, and have you disabled any content-blocking extensions?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "ProvidedCableCheck"
+                }
+            ]
+        },
+        "ProvidedCableCheck": {
+            "question": "Are you using the provided USB-C to USB-A cable?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "ArduinoPortCheck"
+                }
+            ]
+        },
+        "ArduinoPortCheck": {
+            "question": "Are you connecting the cable from your computer to the silver USB-C port on the microcontroller, ***not*** the black breadboard box?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "Restart"
+                }
+            ]
+        },
+        "Restart": {
+            "question": "Disable bluetooth on your computer and restart it. Windows users, start the agent as administrator again. Does it work now?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "RequestHelpSupported"
+                }
+            ]
+        },
+        "RequestHelpSupported": {
+            "question": "Request help in #ide-help-chat of the Hack Pack discord.",
+            "answers": []
+        }
+    }
+}

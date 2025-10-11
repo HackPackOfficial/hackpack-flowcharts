@@ -1,0 +1,89 @@
+{
+    "id": "domino-bot",
+    "title": "Domino Bot Troubleshooting",
+    "description": "Interactive guide to solve issues with the Domino Bot.",
+    "startingQuestion": "Title",
+    "image": "https://pi-space.crunchlabs.com/media/original/domino-robot.webp",
+    "color": "#d94d3b",
+    "questions": {
+        "Title": {
+            "question": "What is being the problem?",
+            "answers": [
+                {
+                    "answer": "My robot isn't driving forward.",
+                    "nextQuestion": "DrivingForwardWheels"
+                },
+                {
+                    "answer": "My domino robot isn't following the line.",
+                    "nextQuestion": "LineSensorLEDCheck"
+                }
+            ]
+        },
+
+        "DrivingForwardWheels": {
+            "question": "Are the wheels spinning?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "SurfaceCheck"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "HBridgeCheck"
+                }
+            ]
+        },
+        "SurfaceCheck": {
+            "question": "Make sure you are using your robot on a smooth, flat surface that isn't dusty. Any bumps or grooves can prevent the robot from driving."
+        },
+        "HBridgeCheck": {
+            "question": "Check your H-bridge wiring to make sure everything is connected correctly."
+        },
+
+        "LineSensorLEDCheck": {
+            "question": "Make sure your line sensor wires are fully plugged in. The line sensors should have red LED lights that turn on when powered. Are the line sensor LEDs lighting up?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "LineColorContrast"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "ReplaceLineSensors"
+                }
+            ]
+        },
+        "LineColorContrast": {
+            "question": "If your table isn't light enough (or dark enough), try putting down opposite color electrical tape on the sides of your main line (white, black, white). Does your robot follow the line now?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "LineFollowingSuccess"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "SwapLineSensorWires"
+                }
+            ]
+        },
+        "SwapLineSensorWires": {
+            "question": "Find the blue and green wires on your breadboard and swap their positions. Does your robot follow the line now?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "LineFollowingSuccess"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "ReplaceLineSensors"
+                }
+            ]
+        },
+        "LineFollowingSuccess": {
+            "question": "Great! Your robot should now be following the line properly."
+        },
+        "ReplaceLineSensors": {
+            "question": "Your line sensors may be faulty. Request replacement line sensors from customer service."
+        }
+    }
+}

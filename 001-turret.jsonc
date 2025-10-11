@@ -1,0 +1,259 @@
+{
+    "id": "turret",
+    "title": "Turret Troubleshooting",
+    "description": "Interactive guide to solve issues with the turret.",
+    "startingQuestion": "Title",
+    "image": "https://pi-space.crunchlabs.com/media/original/ir-turret.webp",
+    "color": "#e2aa4f",
+    "questions": {
+        "Title": {
+            "question": "What is the problem?",
+            "answers": [
+                {
+                    "answer": "My turret isn't turning on.",
+                    "nextQuestion": "PowerBankButton"
+                },
+                {
+                    "answer": "One of my electrical components isn't working.",
+                    "nextQuestion": "ComponentType"
+                }
+            ]
+        },
+        "PowerBankButton": {
+            "question": "Try pressing the button on the power bank once.",
+            "answers": [
+                {
+                    "answer": "Done",
+                    "nextQuestion": "BreadboardSwitch"
+                }
+            ]
+        },
+        "BreadboardSwitch": {
+            "question": "Make sure the breadboard switch is in the ON position. Is the light on the breadboard lighting up?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "MicroControllerLights"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "PowerBankPlug"
+                }
+            ]
+        },
+        "PowerBankPlug": {
+            "question": "Make sure that the power bank is properly plugged into the breadboard. Now, is the light on the breadboard lighting up?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "MicroControllerLights"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "CheckPowerBankCharge"
+                }
+            ]
+        },
+        "CheckPowerBankCharge": {
+            "question": "Press the button on the power bank and see how many of the four lights turn on. If one or zero lights turn on, charge the battery pack until it is fully charged. Now, is the light on the breadboard turning on?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "MicroControllerLights"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "BrokenBreadboard"
+                }
+            ]
+        },
+        "BrokenBreadboard": {
+            "question": "Your breadboard (or cable) is broken and you should request a new one from customer service."
+        },
+        "MicroControllerLights": {
+            "question": "Make sure the microcontroller is pushed in all the way. Are the lights on the microcontroller lighting up?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "CheckWiringConnections"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "ReseatWiringCard"
+                }
+            ]
+        },
+        "ReseatWiringCard": {
+            "question": "Try removing the wiring card and plug everything back into place. Are the lights on the microcontroller lighting up now?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "CheckWiringConnections"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "BrokenMicroController"
+                }
+            ]
+        },
+        "BrokenMicroController": {
+            "question": "Your microcontroller is broken and you should request a new one from customer service."
+        },
+        "CheckWiringConnections": {
+            "question": "Check your wiring connections and make sure that everything is plugged in correctly and fully. Is the robot turning on now?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "Resolved"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "DamagedComponents"
+                }
+            ]
+        },
+        "DamagedComponents": {
+            "question": "One or more of your electrical components may be damaged. Identify which ones aren't working and request replacements from the parts page."
+        },
+        "Resolved": {
+            "question": "Great! Your robot should now be turning on properly."
+        },
+        "ComponentType": {
+            "question": "Which component isn't working?",
+            "answers": [
+                {
+                    "answer": "A sensor isn't working.",
+                    "nextQuestion": "SensorPowerCheck"
+                },
+                {
+                    "answer": "A servo motor isn't working.",
+                    "nextQuestion": "ServoCrashCheck"
+                },
+                {
+                    "answer": "A gear motor or DC motor isn't working.",
+                    "nextQuestion": "MotorPowerCheck"
+                },
+                {
+                    "answer": "Something else, or I'm not sure.",
+                    "nextQuestion": "MotorPowerCheck"
+                }
+            ]
+        },
+        "SensorPowerCheck": {
+            "question": "If the sensor uses the breadboard's power rails, make sure the power wire (red) is plugged into (+) and the ground wire (black) is plugged into (-). Are the sensor wires in the correct data pins on the breadboard?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "ComponentWorking"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "ComponentWorking"
+                }
+            ]
+        },
+        "ComponentWorking": {
+            "question": "Is the component working now?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "Resolved"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "USBCCheck"
+                }
+            ]
+        },
+        "USBCCheck": {
+            "question": "Make sure the USB-C cable is plugged into the side of the breadboard with the red switch. Is it connected correctly?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "BreadboardConnectionTest"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "BreadboardConnectionTest"
+                }
+            ]
+        },
+        "BreadboardConnectionTest": {
+            "question": "Does wiggling the component's wires near the breadboard cause it to turn on and off?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "LoosePinFix"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "WireRecheck"
+                }
+            ]
+        },
+        "LoosePinFix": {
+            "question": "You might have a loose or damaged internal pin on the breadboard. Try wiggling or re-seating the wire, or request a replacement breadboard if needed."
+        },
+        "WireRecheck": {
+            "question": "Check your jumper wire connections once more and ensure everything is fully inserted. Is the component working now?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "Resolved"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "DamagedComponents"
+                }
+            ]
+        },
+        "ServoCrashCheck": {
+            "question": "Is the servo crashing and getting hot, or is it vibrating but not turning?",
+            "answers": [
+                {
+                    "answer": "Crashing and getting hot",
+                    "nextQuestion": "ServoBackwardInstall"
+                },
+                {
+                    "answer": "Vibrating but not turning",
+                    "nextQuestion": "ServoTightnessCheck"
+                }
+            ]
+        },
+        "ServoBackwardInstall": {
+            "question": "It sounds like the servo or servo arm may be installed backwards. Turn off the robot, rotate the servo arm 180 degrees, and remount it.",
+            "answers": [
+                {
+                    "answer": "Done",
+                    "nextQuestion": "ServoTightnessCheck"
+                }
+            ]
+        },
+        "ServoTightnessCheck": {
+            "question": "If the servo horn is screwed on too tightly, it can prevent movement. Loosen it slightly to relieve pressure. Is the component working now?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "Resolved"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "USBCCheck"
+                }
+            ]
+        },
+        "MotorPowerCheck": {
+            "question": "With the breadboard powered and switched ON, plug the motor's red wire into (+) and black wire into (-). Does the motor spin?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "Resolved"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "USBCCheck"
+                }
+            ]
+        }
+    }
+}
