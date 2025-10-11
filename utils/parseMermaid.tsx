@@ -1,4 +1,5 @@
 // Utility function to convert JSON to mermaid
+// These types and utils are used in the IDE to parse JSON to mermaid.
 
 // Type for block content
 export type BlockContent = {
@@ -28,7 +29,7 @@ export type TroubleshootingGuideProps = {
     }>;
 }
 
-function getMermaidFromJSON(chartJSON: TroubleshootingGuideProps, highlightNode?: string): string {
+export default function getMermaidFromJSON(chartJSON: TroubleshootingGuideProps, highlightNode?: string): string {
     try {
         let queue = ["Title"];
         const doneNodes = new Set();
