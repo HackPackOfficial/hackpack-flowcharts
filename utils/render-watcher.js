@@ -6,8 +6,18 @@ const { exec } = require('child_process');
 const { promisify } = require('util');
 const getMermaidFromJSON = require('../utils/parseMermaid').default;
 const stripJsonComments = require('strip-json-comments');
+// const elkLayouts = require('@mermaid-js/layout-elk');
 
 const execAsync = promisify(exec);
+
+// Mermaid configuration
+// const mermaidConfig = {
+//     theme: 'dark',
+//     themeVariables: {
+//         nodeBorder: '#FFFFFF',
+//         edgeLabelBackground: '#0005',
+//     },
+// };
 
 // Mermaid configuration
 const mermaidConfig = {
@@ -15,7 +25,7 @@ const mermaidConfig = {
     themeVariables: {
         nodeBorder: '#FFFFFF',
         edgeLabelBackground: '#0005',
-    },
+    }
 };
 
 const rootDir = path.join(__dirname, '..');
@@ -25,6 +35,14 @@ const flowchartDir = path.join(rootDir, 'flowcharts');
 // Ensure preview directory exists
 if (!fs.existsSync(previewDir)) {
     fs.mkdirSync(previewDir, { recursive: true });
+}
+
+// Update paths to use a 'temp' subfolder for temporary files
+const tempDir = path.join(previewDir, 'temp');
+
+// Ensure temp directory exists
+if (!fs.existsSync(tempDir)) {
+    fs.mkdirSync(tempDir, { recursive: true });
 }
 
 // Function to parse JSONC (JSON with comments) using the library
@@ -53,32 +71,32 @@ async function renderChart(filePath) {
 
         // Read and parse the JSON/JSONC file
         const fileContent = fs.readFileSync(filePath, 'utf-8');
-        // Validate and cast the parsed JSON to TroubleshootingGuideProps
         /** @type {TroubleshootingGuideProps} */
         const chartJSON = parseJSONC(fileContent);
 
         // Generate mermaid code
         const mermaidCode = getMermaidFromJSON(chartJSON);
-        
         if (!mermaidCode) {
             console.error(`Failed to generate mermaid code for ${fileName}`);
             return;
         }
 
-        // Create a temporary mermaid file
-        const tempMmdPath = path.join(previewDir, `${fileNameWithoutExt}.mmd`);
-        fs.writeFileSync(tempMmdPath, mermaidCode);
+        // Create a temporary mermaid file in the temp folder
+        const tempMmdPath = path.join(tempDir, `${fileNameWithoutExt}.mmd`);
+        await fs.promises.writeFile(tempMmdPath, mermaidCode);
 
-        // Create config file for mermaid-cli
-        const configPath = path.join(previewDir, 'mermaid-config.json');
-        fs.writeFileSync(configPath, JSON.stringify(mermaidConfig, null, 2));
+        // Create a unique config file in the temp folder
+        const configPath = path.join(tempDir, `${fileNameWithoutExt}-config.json`);
+        await fs.promises.writeFile(configPath, JSON.stringify({
+            ...mermaidConfig,
+            ...(chartJSON.renderOptions ?? {})
+        }, null, 2));
 
         // Use mmdc CLI to render the chart
         try {
-            // Update the path to mmdc.cmd to point to the correct location in the root node_modules directory
             const mmdcPath = path.join(__dirname, '..', 'node_modules', '.bin', 'mmdc.cmd');
-            const command = `"${mmdcPath}" -i "${tempMmdPath}" -o "${outputPath}" -c "${configPath}" -b transparent -s 2.0`;
-            
+            const command = `"${mmdcPath}" -i "${tempMmdPath}" -o "${outputPath}" -c "${configPath}" -b transparent -s 3.0`;
+
             console.log(`  Running: mmdc for ${fileNameWithoutExt}...`);
             const { stdout, stderr } = await execAsync(command, { timeout: 60000 });
             if (stderr && !stderr.includes('info') && !stderr.includes('Info')) {

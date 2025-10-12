@@ -67,11 +67,14 @@ export default function getMermaidFromJSON(chartJSON: TroubleshootingGuideProps,
                     buildCharSeg += `${nodeName}["\`${escapedContent}\`"]\n`;
 
                     node.answers?.forEach((answerObject) => {
-                        const nextNodeName = answerObject.nextQuestion;
+                        const nextNodeName = answerObject.nextQuestion || "NodeNotDefined";
                         const arrow = answerObject.customArrow || node.customArrow || "-->";
+                        const noArrow = "customArrow" in answerObject && !answerObject.customArrow; // Explicitly no arrow
                         const edgeKey = `${nodeName}-${arrow}-${nextNodeName}`; // Unique key for arrow
 
-                        if (!doneArrows.has(edgeKey)) {
+                        if (noArrow) return;
+
+                        if (!doneArrows.has(edgeKey) && nextNodeName) {
                             doneArrows.add(edgeKey);
                             if (answerObject.answer)
                                 buildCharSeg += `${nodeName} ${arrow} |"${escapeContent(answerObject.answer)}"| ${nextNodeName}\n`;

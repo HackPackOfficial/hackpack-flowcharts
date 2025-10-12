@@ -1,4 +1,6 @@
-This repo contains the JSON flowcharts for CrunchLabs' Hack Pack boxes.
+# HackPack Flowcharts
+
+This repository contains JSON flowcharts for troubleshooting CrunchLabs' Hack Pack boxes. It supports interactive walkthroughs and visual Mermaid.js charts.
 
 Common issues that many people might experience can be PRed to these flowcharts. Very rare issues, such as a pin not being soldered fully, are not useful on these flowcharts. The ideal issues are build issues people frequently make or common issues.
 
@@ -28,3 +30,13 @@ The `questions` object defines the flowchart structure. It starts with `Title` a
 ## Handling Mermaid.js Formatting
 
 Mermaid.js formatting can sometimes be weird. The parser attempts to escape content as needed, but certain elements (e.g., embedded links) may need updates to the parser.
+
+## Render Options
+
+The `renderOptions` field at the root level allows customization of the flowchart's layout and rendering behavior. For example:
+
+```jsonc
+"renderOptions": { "layout": "elk" }
+```
+
+The `elk` layout engine improves readability for complex charts but requires square lines which don't look as good. Some very linear charts like the IDE chart don't need ELK, whereas more complex charts do. 
