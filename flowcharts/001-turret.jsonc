@@ -5,255 +5,312 @@
     "startingQuestion": "Title",
     "image": "https://pi-space.crunchlabs.com/media/original/ir-turret.webp",
     "color": "#e2aa4f",
+    "renderOptions": { "layout": "elk" },
     "questions": {
+        // Routing
         "Title": {
+            "question": "Have you checked your wiring to make sure everything goes to the **exact** color it is supposed to?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "ProblemList"
+                },
+                {
+                    "answer": "No, I'll do that now",
+                    "nextQuestion": "Title",
+                    "customArrow": ""
+                }
+            ]
+        },
+        "ProblemList": {
             "question": "What is the problem?",
             "answers": [
                 {
                     "answer": "My turret isn't turning on.",
-                    "nextQuestion": "PowerBankButton"
+                    "nextQuestion": "NotTurningOn"
                 },
                 {
-                    "answer": "One of my electrical components isn't working.",
-                    "nextQuestion": "ComponentType"
+                    "answer": "My turret won't respond to the remote.",
+                    "nextQuestion": "RemoteIssue"
+                },
+                {
+                    "answer": "A motor isn't working / is slow",
+                    "nextQuestion": "MotorIssue"
+                },
+                {
+                    "answer": "My turret won't connect to the IDE",
+                    "nextQuestion": "IDEIssue"
+                },
+                {
+                    "answer": "Something else / I got stuck.",
+                    "nextQuestion": "RequestHelp"
                 }
             ]
         },
-        "PowerBankButton": {
-            "question": "Try pressing the button on the power bank once.",
+        "IDEIssue": {
+            "question": "Please see the [IDE troubleshooting flowchart](https://ide.crunchlabs.com/troubleshooting/IDE) for IDE issues."
+        },
+        // Remote connection
+        "RemoteIssue": {
+            "question": "We are assuming that the turret isn't even blinking any lights when the remote is pressed. Double check your wiring on everything, the breadboard, and where the wires couple together. Assuming you have done this already, is the arduino's \"L\" light on or off?",
             "answers": [
                 {
-                    "answer": "Done",
+                    "answer": "The L light is on",
+                    "nextQuestion": "LLightOn"
+                },
+                {
+                    "answer": "The L light is off",
+                    "nextQuestion": "LLightOff"
+                }
+            ]
+        },
+        // L light is on, remote-side issue
+        "LLightOff": {
+            "question": "There is likely some issue with the remote. Get a phone's camera, and look at the top of the remote. Through the camera, do you see the remote flash when you press buttons?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "LLightBadReceiver"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "RemoteNotWorking"
+                }
+            ]
+        },
+        "RemoteNotWorking": {
+            "question": "Make sure you pulled the plastic tab out of the remote. Check the battery, make sure the text and the \"+\" are facing downwards. Is the remote working now?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "ReplacementElectronicPart"
+                }
+            ]
+        },
+        // L light is off, IR receiver-side issue
+        "LLightOn": {
+            "question": "If the light is on, this means the arduino does not see the IR receiver. The most common cause of this is incorrect wiring.\nIf you are sure your wiring is right, there is a chance your breadboard is weak. To test this, pull the multicolored wires out of the breadboard and hold the tips of the purple wire directly against the pin marked D9. Does the green light turn off while doing this?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "LLightBadBreadboard"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "LLightBadReceiver"
+                }
+            ]
+        },
+        "LLightBadReceiver": {
+            "question": "You likely have a defective IR receiver. Email help@crunchlabs.com for a replacement. You can also email or ask on the [Hack Pack discord](https://discord.gg/hackpack) for additional help."
+        },
+        "LLightBadBreadboard": {
+            "question": "This could potentially be a bad breadboard. Try putting the wires back where they go in the breadboard, purple in D9, make sure everything is good. Does the green light turn off now?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "ReplacementElectronicPart"
+                }
+            ]
+        },
+        // Motor stuff
+        "MotorIssue": {
+            "question": "Choose the best option:",
+            "answers": [
+                {
+                    "answer": "A motor is making a distinct clicking sound",
+                    "nextQuestion": "ReplacementElectronicPart"
+                },
+                {
+                    "answer": "Pitch is slamming downwards",
+                    "nextQuestion": "PitchSlamming"
+                },
+                {
+                    "answer": "A motor is weak",
+                    "nextQuestion": "MotorIsWeak"
+                },
+                {
+                    "answer": "A motor isn't moving at all",
+                    "nextQuestion": "MotorNotWorking"
+                }
+            ]
+        },
+        "PitchSlamming": {
+            "question": "Remove the screws from the orange arm of the pitch, turn the bot on, let the servo spin home, then put the screws back in. Did this fix it?",
+            "blocks": [
+                {
+                    "type": "video",
+                    "id": "pitch-slam-issue-video",
+                    "content": {
+                        "url": "https://drive.google.com/file/d/14h4RP1r3hVfrNAe3Wf2XH_YRtKCB3EQ7",
+                        "light": false,
+                        "controls": true
+                    }
+                }
+            ],
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "RequestHelp"
+                }
+            ]
+        },
+        "MotorIsWeak": {
+            "question": "Try loosening the screw in the center of the orange arm that attaches to the weak motor to relieve pressure on it. Is it working now?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "WhichMotorIsWeak"
+                }
+            ]
+        },
+        "WhichMotorIsWeak": {
+            "question": "Which motor is weak?",
+            "answers": [
+                {
+                    "answer": "The yaw motor is weak.",
+                    "nextQuestion": "YawTightenOrangeAcorns"
+                },
+                {
+                    "answer": "The roll motor is weak.",
+                    "nextQuestion": "RollLoosenBarrel"
+                },
+                {
+                    "answer": "The pitch motor is weak.",
+                    "nextQuestion": "RequestHelp"
+                }
+            ]
+        },
+        "MotorNotWorking" : {
+            "question": "Which motor isn't working?",
+            "answers": [
+                {
+                    "answer": "The yaw / roll motor isn't working.",
+                    "nextQuestion": "YawRollConnectionTest"
+                },
+                {
+                    "answer": "The pitch motor isn't working.",
+                    "nextQuestion": "RequestHelp"
+                }
+            ]
+        },
+        "YawTightenOrangeAcorns": {
+            "question": "Try tightening the orange acorn nuts between the two wooden base layers. Make sure everything else is fully tightened, built properly, and looks identical to the turret in the instructions. Is it working now?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "SwapYawRoll"
+                }
+            ]
+        },
+        "RollLoosenBarrel": {
+            "question": "The strength of the magnets on the barrel can vary. You might try taking scotch tape (ideally the frosted style, not the clear style), and lining the back metal ring of the turret with one or two layers. This both reduces friction, and causes more space between the magnets, which reduces their strength. Does it work now?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "SwapYawRoll"
+                }
+            ]
+        },
+        "SwapYawRoll": {
+            "question": "Yaw and roll both use the same type of motor. To test if your motor is bad, you can install the working one as if it were the broken one (e.g. if yaw wasn't working, take out roll and install yaw there instead). You will need to unscrew and swap the orange motor attachments. Does the broken axis work off this new motor?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "ReplacementElectronicPart"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "RequestHelp"
+                }
+            ]
+        },
+        "YawRollConnectionTest": {
+            "question": "We should test to make sure the motor is getting signal. Find the wires of both the yaw and roll motor, where they couple together with the other wires. Swap the connections for roll and yaw. Does the motor that wasn't working start working now?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "WireIssue"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "SwapYawRoll"
+                }
+            ]
+        },
+        "WireIssue": {
+            "question": "The servo isn't broken. Try putting it back and see if moving it was enough to get a stronger connection. If it still doesn't work, it is possible that either your breadboard has a bad pin, or your arduino has a bad pin, or your jumper cables are bad. Were you able to get it working by messing with it?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "RequestHelp"
+                }
+            ]
+        },
+        // Power stuff
+        "NotTurningOn": {
+            "question": "Try pressing the button on the power bank once. Does it work now?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "ChargedBattery"
+                }
+            ]
+        },
+        "ChargedBattery": {
+            "question": "Is the battery pack charged 75% or more? When you press the button on it, the face will show dots representing how full the battery is.",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "BreadboardSwitch"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "ChargeBatteryPack"
+                }
+            ]
+        },
+        "ChargeBatteryPack": {
+            "question": "Charge the battery pack until it is fully charged, then try again. Now, is the light on the breadboard lighting up?",
+            "answers": [
+                {
+                    "answer": "Yes",
                     "nextQuestion": "BreadboardSwitch"
                 }
             ]
         },
         "BreadboardSwitch": {
-            "question": "Make sure the breadboard switch is in the ON position. Is the light on the breadboard lighting up?",
+            "question": "Make sure the breadboard switch is in the ON position. Does it turn on now?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "TryAnotherCable"
+                }
+            ]
+        },
+        "TryAnotherCable": {
+            "question": "Try using a different USB-C cable to power the breadboard. Does it turn on now?",
             "answers": [
                 {
                     "answer": "Yes",
-                    "nextQuestion": "MicroControllerLights"
+                    "nextQuestion": "BrokenCable"
                 },
                 {
                     "answer": "No",
-                    "nextQuestion": "PowerBankPlug"
+                    "nextQuestion": "RequestHelp"
                 }
             ]
         },
-        "PowerBankPlug": {
-            "question": "Make sure that the power bank is properly plugged into the breadboard. Now, is the light on the breadboard lighting up?",
-            "answers": [
-                {
-                    "answer": "Yes",
-                    "nextQuestion": "MicroControllerLights"
-                },
-                {
-                    "answer": "No",
-                    "nextQuestion": "CheckPowerBankCharge"
-                }
-            ]
+        "BrokenCable": {
+            "question": "Your USB-C cable is defective, email help@crunchlabs.com for a replacement. You can also email or ask on the [Hack Pack discord](https://discord.gg/hackpack) for additional help."
         },
-        "CheckPowerBankCharge": {
-            "question": "Press the button on the power bank and see how many of the four lights turn on. If one or zero lights turn on, charge the battery pack until it is fully charged. Now, is the light on the breadboard turning on?",
-            "answers": [
-                {
-                    "answer": "Yes",
-                    "nextQuestion": "MicroControllerLights"
-                },
-                {
-                    "answer": "No",
-                    "nextQuestion": "BrokenBreadboard"
-                }
-            ]
+        // Final actions
+        "ReplacementElectronicPart": {
+            "question": "You likely have a defective part. Email help@crunchlabs.com for a replacement. You can also email or ask on the [Hack Pack discord](https://discord.gg/hackpack) for additional help."
         },
-        "BrokenBreadboard": {
-            "question": "Your breadboard (or cable) is broken and you should request a new one from customer service."
-        },
-        "MicroControllerLights": {
-            "question": "Make sure the microcontroller is pushed in all the way. Are the lights on the microcontroller lighting up?",
-            "answers": [
-                {
-                    "answer": "Yes",
-                    "nextQuestion": "CheckWiringConnections"
-                },
-                {
-                    "answer": "No",
-                    "nextQuestion": "ReseatWiringCard"
-                }
-            ]
-        },
-        "ReseatWiringCard": {
-            "question": "Try removing the wiring card and plug everything back into place. Are the lights on the microcontroller lighting up now?",
-            "answers": [
-                {
-                    "answer": "Yes",
-                    "nextQuestion": "CheckWiringConnections"
-                },
-                {
-                    "answer": "No",
-                    "nextQuestion": "BrokenMicroController"
-                }
-            ]
-        },
-        "BrokenMicroController": {
-            "question": "Your microcontroller is broken and you should request a new one from customer service."
-        },
-        "CheckWiringConnections": {
-            "question": "Check your wiring connections and make sure that everything is plugged in correctly and fully. Is the robot turning on now?",
-            "answers": [
-                {
-                    "answer": "Yes",
-                    "nextQuestion": "Resolved"
-                },
-                {
-                    "answer": "No",
-                    "nextQuestion": "DamagedComponents"
-                }
-            ]
-        },
-        "DamagedComponents": {
-            "question": "One or more of your electrical components may be damaged. Identify which ones aren't working and request replacements from the parts page."
-        },
-        "Resolved": {
-            "question": "Great! Your robot should now be turning on properly."
-        },
-        "ComponentType": {
-            "question": "Which component isn't working?",
-            "answers": [
-                {
-                    "answer": "A sensor isn't working.",
-                    "nextQuestion": "SensorPowerCheck"
-                },
-                {
-                    "answer": "A servo motor isn't working.",
-                    "nextQuestion": "ServoCrashCheck"
-                },
-                {
-                    "answer": "A gear motor or DC motor isn't working.",
-                    "nextQuestion": "MotorPowerCheck"
-                },
-                {
-                    "answer": "Something else, or I'm not sure.",
-                    "nextQuestion": "MotorPowerCheck"
-                }
-            ]
-        },
-        "SensorPowerCheck": {
-            "question": "If the sensor uses the breadboard's power rails, make sure the power wire (red) is plugged into (+) and the ground wire (black) is plugged into (-). Are the sensor wires in the correct data pins on the breadboard?",
-            "answers": [
-                {
-                    "answer": "Yes",
-                    "nextQuestion": "ComponentWorking"
-                },
-                {
-                    "answer": "No",
-                    "nextQuestion": "ComponentWorking"
-                }
-            ]
-        },
-        "ComponentWorking": {
-            "question": "Is the component working now?",
-            "answers": [
-                {
-                    "answer": "Yes",
-                    "nextQuestion": "Resolved"
-                },
-                {
-                    "answer": "No",
-                    "nextQuestion": "USBCCheck"
-                }
-            ]
-        },
-        "USBCCheck": {
-            "question": "Make sure the USB-C cable is plugged into the side of the breadboard with the red switch. Is it connected correctly?",
-            "answers": [
-                {
-                    "answer": "Yes",
-                    "nextQuestion": "BreadboardConnectionTest"
-                },
-                {
-                    "answer": "No",
-                    "nextQuestion": "BreadboardConnectionTest"
-                }
-            ]
-        },
-        "BreadboardConnectionTest": {
-            "question": "Does wiggling the component's wires near the breadboard cause it to turn on and off?",
-            "answers": [
-                {
-                    "answer": "Yes",
-                    "nextQuestion": "LoosePinFix"
-                },
-                {
-                    "answer": "No",
-                    "nextQuestion": "WireRecheck"
-                }
-            ]
-        },
-        "LoosePinFix": {
-            "question": "You might have a loose or damaged internal pin on the breadboard. Try wiggling or re-seating the wire, or request a replacement breadboard if needed."
-        },
-        "WireRecheck": {
-            "question": "Check your jumper wire connections once more and ensure everything is fully inserted. Is the component working now?",
-            "answers": [
-                {
-                    "answer": "Yes",
-                    "nextQuestion": "Resolved"
-                },
-                {
-                    "answer": "No",
-                    "nextQuestion": "DamagedComponents"
-                }
-            ]
-        },
-        "ServoCrashCheck": {
-            "question": "Is the servo crashing and getting hot, or is it vibrating but not turning?",
-            "answers": [
-                {
-                    "answer": "Crashing and getting hot",
-                    "nextQuestion": "ServoBackwardInstall"
-                },
-                {
-                    "answer": "Vibrating but not turning",
-                    "nextQuestion": "ServoTightnessCheck"
-                }
-            ]
-        },
-        "ServoBackwardInstall": {
-            "question": "It sounds like the servo or servo arm may be installed backwards. Turn off the robot, rotate the servo arm 180 degrees, and remount it.",
-            "answers": [
-                {
-                    "answer": "Done",
-                    "nextQuestion": "ServoTightnessCheck"
-                }
-            ]
-        },
-        "ServoTightnessCheck": {
-            "question": "If the servo horn is screwed on too tightly, it can prevent movement. Loosen it slightly to relieve pressure. Is the component working now?",
-            "answers": [
-                {
-                    "answer": "Yes",
-                    "nextQuestion": "Resolved"
-                },
-                {
-                    "answer": "No",
-                    "nextQuestion": "USBCCheck"
-                }
-            ]
-        },
-        "MotorPowerCheck": {
-            "question": "With the breadboard powered and switched ON, plug the motor's red wire into (+) and black wire into (-). Does the motor spin?",
-            "answers": [
-                {
-                    "answer": "Yes",
-                    "nextQuestion": "Resolved"
-                },
-                {
-                    "answer": "No",
-                    "nextQuestion": "USBCCheck"
-                }
-            ]
+        "RequestHelp": {
+            "question": "Click \"Download Log\", and send it along with your request for help. You can request help in the [Hack Pack discord](https://discord.gg/hackpack) or by emailing help@crunchlabs.com",
+            "answers": []
         }
     }
 }
