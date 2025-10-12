@@ -37,6 +37,12 @@ export default function getMermaidFromJSON(chartJSON: TroubleshootingGuideProps,
         let round = 0;
         let builtChart = "";
 
+        let escapeContent = (content: String) => content
+            .replaceAll('"', '&quot;')
+            .replaceAll('<', '&lt;')
+            .replaceAll('>', '&gt;')
+            .replaceAll('`', '&#96;');
+
         while (queue.length > 0) {
             round += 1;
             if (round > 1000) {
@@ -50,11 +56,7 @@ export default function getMermaidFromJSON(chartJSON: TroubleshootingGuideProps,
                 const node = chartJSON.questions[nodeName];
                 if (node) {
                     // Escape content for Mermaid - keep it minimal
-                    let escapedContent = node.question
-                        .replaceAll('"', '&quot;')
-                        .replaceAll('<', '&lt;')
-                        .replaceAll('>', '&gt;')
-                        .replaceAll('`', '&#96;');
+                    let escapedContent = escapeContent(node.question);
 
                     // Parse markdown links to <a> links so they look blue
                     escapedContent = escapedContent.replace(
@@ -72,7 +74,7 @@ export default function getMermaidFromJSON(chartJSON: TroubleshootingGuideProps,
                         if (!doneArrows.has(edgeKey)) {
                             doneArrows.add(edgeKey);
                             if (answerObject.answer)
-                                buildCharSeg += `${nodeName} ${arrow} |${answerObject.answer}| ${nextNodeName}\n`;
+                                buildCharSeg += `${nodeName} ${arrow} |"${escapeContent(answerObject.answer)}"| ${nextNodeName}\n`;
                             else
                                 buildCharSeg += `${nodeName} ${arrow} ${nextNodeName}\n`;
                         }

@@ -75,11 +75,11 @@
             "answers": []
         },
         "Linux": {
-            "question": "Request help in #ide-help-chat of the Hack Pack discord.",
+            "question": "Request help in the [Hack Pack discord](https://discord.gg/hackpack) or by emailing help@crunchlabs.com",
             "answers": []
         },
         "Other": {
-            "question": "Request help in #ide-help-chat of the Hack Pack discord.",
+            "question": "Request help in the [Hack Pack discord](https://discord.gg/hackpack) or by emailing help@crunchlabs.com",
             "answers": []
         },
         "Windows": {
@@ -113,11 +113,11 @@
             "answers": []
         },
         "MacInstallAgent": {
-            "question": "Refer to the downloads video for how to install the create agent on mac. If you need additional help, ask in #ide-help-chat",
+            "question": "Refer to the downloads video for how to install the create agent on mac. If you need additional help, ask in the [Hack Pack discord](https://discord.gg/hackpack) or email help@crunchlabs.com",
             "answers": []
         },
         "BrowserCheck": {
-            "question": "Are you using Chrome as your browser, and have you disabled any content-blocking extensions?",
+            "question": "Are you using Chrome as your browser, and have you disabled any content-blocking extensions (adblockers, privacy extensions)?",
             "answers": [
                 {
                     "answer": "Yes",
@@ -139,6 +139,15 @@
             "answers": [
                 {
                     "answer": "Yes",
+                    "nextQuestion": "TryAnotherCable"
+                }
+            ]
+        },
+        "TryAnotherCable": {
+            "question": "Try using another data-capable cable. Does it work now?",
+            "answers": [
+                {
+                    "answer": "No",
                     "nextQuestion": "Restart"
                 }
             ]
@@ -148,12 +157,68 @@
             "answers": [
                 {
                     "answer": "No",
-                    "nextQuestion": "RequestHelpSupported"
+                    "nextQuestion": "TryIncognito"
                 }
             ]
         },
-        "RequestHelpSupported": {
-            "question": "Request help in #ide-help-chat of the Hack Pack discord.",
+        "TryIncognito": {
+            "question": "Try running your browser in Incognito mode so it starts without extensions. Does it work now?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "DeviceCheckForDeviceMan"
+                }
+            ]
+        },
+
+        "DeviceCheckForDeviceMan" : {
+            "question": "Did you say that you used Windows or Mac?",
+            "answers": [
+                {
+                    // Windows needs to go over device manager
+                    "answer": "Windows",
+                    "nextQuestion": "WindowsDeviceManager"
+                },
+                {
+                    // Mac has nothing left to try
+                    "answer": "Mac",
+                    "nextQuestion": "RequestHelp"
+                }
+            ]
+        },
+        "WindowsDeviceManager": {
+            "question": "Try opening Device Manager, plug in the arduino, look for anything under USBs and Ports & Coms sections that is marked unknown, other, or USB Serial that could possibly be the arduino. Once you find something you think is it unplug the arduino, if it disappears after a second, then you found it. What is it listed at?",
+            "answers": [
+                {
+                    "answer": "USB-SERIAL CH340",
+                    "nextQuestion": "HasDriver"
+                },
+                {
+                    "answer": "USB Serial / Unknown / Communications Port / Other",
+                    "nextQuestion": "WindowsInstallDriver"
+                }
+            ]
+        },
+        "HasDriver": { 
+            "question": "Your device is recognizing the Arduino, so the cable, drivers, and ports are all good. Make sure you properly did all the above steps, try running your browser in Incognito mode so it starts without extensions.",
+            "answers": [
+                { 
+                    "answer": "It still doesn't work",
+                    "nextQuestion": "RequestHelp"
+                }
+            ]
+        }, 
+        "WindowsInstallDriver": {
+            "question": "Try installing the CH340 driver from [here](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all#drivers-if-you-need-them). Restart your computer *(this is actually necessary)*. Does it show up as **USB-SERIAL CH340** now?",
+            "answers": [
+                { 
+                    "answer": "No",
+                    "nextQuestion": "RequestHelp"
+                }
+            ]
+        },
+        "RequestHelp": {
+            "question": "Request help in the [Hack Pack discord](https://discord.gg/hackpack) or by emailing help@crunchlabs.com",
             "answers": []
         }
     }
