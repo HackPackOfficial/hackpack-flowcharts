@@ -1,0 +1,1 @@
+Run `npm run watch` to render each chart into the `./preview` folder. Change any of the flowchart JSON files, and save it. The image will automatically be regenerated.
