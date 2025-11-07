@@ -17,6 +17,7 @@ export type TroubleshootingGuideProps = {
     startingQuestion: string;
     color: string;
     customArrow?: string;
+    renderOptions?: string;
     questions: Record<string, {
         question: string;
         customArrow?: string;
