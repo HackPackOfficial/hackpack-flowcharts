@@ -6,84 +6,224 @@
     "image": "https://pi-space.crunchlabs.com/media/original/domino-robot.webp",
     "color": "#d94d3b",
     "questions": {
+        // Selection menu
         "Title": {
-            "question": "What is being the problem?",
+            "question": "What seems to be the problem?",
             "answers": [
                 {
-                    "answer": "My robot isn't driving forward.",
-                    "nextQuestion": "DrivingForwardWheels"
+                    "answer": "My robot isn't turning on at all.",
+                    "nextQuestion": "CheckBackwardsWires"
                 },
                 {
-                    "answer": "My domino robot isn't following the line.",
-                    "nextQuestion": "LineSensorLEDCheck"
+                    "answer": "My robot isn't driving properly.",
+                    "nextQuestion": "CheckRedWalls"
+                },
+                {
+                    "answer": "My limit switch isn't triggering.",
+                    "nextQuestion": "CheckBadgeReel"
+                },
+                {
+                    "answer": "Something is wrong with my gate / feeding mechanism.",
+                    "nextQuestion": "CheckRedWallsFeedingIssue"
+                },
+                {
+                    "answer": "Something else.",
+                    "nextQuestion": "RequestHelp"
                 }
             ]
         },
-
-        "DrivingForwardWheels": {
-            "question": "Are the wheels spinning?",
+        // Power issues
+        "CheckBackwardsWires": {
+            "question": "First, check that you don't have backwards red and black wires. This is the MOST common solution to the bot not turning on. Did a thorough check fix the issue?",
             "answers": [
                 {
-                    "answer": "Yes",
-                    "nextQuestion": "SurfaceCheck"
+                    "answer": "No",
+                    "nextQuestion": "CheckBattery"
+                }
+            ]
+        },
+        "CheckBattery": {
+            "question": "Make sure your battery is fully charged. Does it work now?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "TryAnotherCable"
+                }
+            ]
+        },
+        "TryAnotherCable": {
+            "question": "Try another USB-C to USB-C cable. Does it work now?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "TryAnotherArduino"
+                }
+            ]
+        },
+        "TryAnotherArduino": {
+            "question": "Take another Arduino from another box, and upload Domino code to it. Does it turn on now?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "CheckHBridgeWires"
+                }
+            ]
+        },
+        "CheckHBridgeWires": {
+            "question": "Thoroughly check your H-Bridge wires (the red chip connecting to the motors). The wire closest to the on/off switch should be black, then red, then black, then red, then black, then red. The first two pairs should be the motor wires, the third pair should be the short wire going to the breadboard. Did fixing the wires solve the issue?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "UnplugMotors"
+                }
+            ]
+        },
+        "UnplugMotors": {
+            "question": "Unplug both motors from the H-bridge. Does the robot turn on now?",
+            "answers": [
+                {
+                    "answer": "Yes, it turns on now.",
+                    "nextQuestion": "ReplacementMotor"
                 },
                 {
                     "answer": "No",
-                    "nextQuestion": "HBridgeCheck"
+                    "nextQuestion": "RequestHelp"
                 }
             ]
         },
-        "SurfaceCheck": {
-            "question": "Make sure you are using your robot on a smooth, flat surface that isn't dusty. Any bumps or grooves can prevent the robot from driving."
+        // Generic driving issues
+        "CheckRedWalls": {
+            "question": "The area where dominos go is the \"domino magazine\". On either side of this are two red walls. Make sure the inner wall is not upside down - both ends of this wall have plastic bumps, the bumps should be on the top, not the bottom. Did this fix it?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "DrivingIssueList"
+                }
+            ]
         },
-        "HBridgeCheck": {
-            "question": "Check your H-bridge wiring to make sure everything is connected correctly."
+        "DrivingIssueList": {
+            "question": "Which driving issue are you having?",
+            "answers": [
+                {
+                    "answer": "My bot isn't driving straight without the line.",
+                    "nextQuestion": "UnplugIRSensors"
+                },
+                {
+                    "answer": "My bot isn't following the line.",
+                    "nextQuestion": "StraightenIRSensors"
+                }
+            ]
         },
-
-        "LineSensorLEDCheck": {
-            "question": "Make sure your line sensor wires are fully plugged in. The line sensors should have red LED lights that turn on when powered. Are the line sensor LEDs lighting up?",
+        // Line following issues
+        "StraightenIRSensors": {
+            "question": "Straighten the bulbs of the IR sensors below the robot, you can even point them _slightly_ apart from each other. Does it follow the line now?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "CheckTapeColor"
+                }
+            ]
+        },
+        "CheckTapeColor": {
+            "question": "Make sure you are using the provided black tape on MOST surfaces. Only use the white tape if both IR sensors show 1 light when sitting on your surface - two lights means it thinks the surface is white. Also make sure your surface is smooth and is a consistent color. Does it follow the line now?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "RequestHelpLogged"
+                }
+            ]
+        },
+        // Straight driving issues
+        "UnplugIRSensors": {
+            "question": "Unplug the two IR sensors (blue and green wires). Does the robot drive straight now?",
             "answers": [
                 {
                     "answer": "Yes",
-                    "nextQuestion": "LineColorContrast"
+                    "nextQuestion": "UnpluggedSensorsWorks"
                 },
                 {
                     "answer": "No",
-                    "nextQuestion": "ReplaceLineSensors"
+                    "nextQuestion": "RequestHelpLogged"
                 }
             ]
         },
-        "LineColorContrast": {
-            "question": "If your table isn't light enough (or dark enough), try putting down opposite color electrical tape on the sides of your main line (white, black, white). Does your robot follow the line now?",
+        "UnpluggedSensorsWorks": {
+            "question": "Great! When you later want to use the sensors to follow the line, go back through this chart and select `My bot isn't following the line`"
+        },
+        // Limit switch not triggering
+        "CheckBadgeReel": {
+            "question": "First, make sure your badge reel is fully clipped into the slot on the wood properly. Did this fix it?",
             "answers": [
                 {
-                    "answer": "Yes",
-                    "nextQuestion": "LineFollowingSuccess"
-                },
-                {
                     "answer": "No",
-                    "nextQuestion": "SwapLineSensorWires"
+                    "nextQuestion": "LimitSwitchTriggerFixes"
                 }
             ]
         },
-        "SwapLineSensorWires": {
-            "question": "Find the blue and green wires on your breadboard and swap their positions. Does your robot follow the line now?",
+        "LimitSwitchTriggerFixes": {
+            "question": "Try the following fixes:\n1. Spreading a small drop of dish soap across the metal bar to reduce friction.\n\n2.Tying a knot in the badge reel so the knot hits the limit switch just before the red square gets stuck on the wall.\n\n3. Using a thin rubber band to pull on the red square with more force.\n\nAfter trying all of these, did any solve the issue?",
             "answers": [
                 {
-                    "answer": "Yes",
-                    "nextQuestion": "LineFollowingSuccess"
-                },
-                {
                     "answer": "No",
-                    "nextQuestion": "ReplaceLineSensors"
+                    "nextQuestion": "RequestHelpLogged"
+                    
                 }
             ]
         },
-        "LineFollowingSuccess": {
-            "question": "Great! Your robot should now be following the line properly."
+        // Gate jamming
+        "CheckRedWallsFeedingIssue": {
+            "question": "The area where dominos go is the \"domino magazine\". On either side of this are two red walls. Make sure the inner wall is not upside down - both ends of this wall have plastic bumps, the bumps should be on the top, not the bottom. Did this fix it?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "GateIssueList"
+                }
+            ]
         },
-        "ReplaceLineSensors": {
-            "question": "Your line sensors may be faulty. Request replacement line sensors from customer service."
+        "GateIssueList": {
+            "question": "Which best describes your gate / feeding issue?",
+            "answers": [
+                {
+                    "answer": "My bot isn't picking up dominos.",
+                    "nextQuestion": "NotPickingUpDominios"
+                },
+                {
+                    "answer": "My bot is jamming or isn't releasing dominos properly.",
+                    "nextQuestion": "NotReleasingDominos"
+                },
+                {
+                    "answer": "Something else.",
+                    "nextQuestion": "RequestHelpLogged"
+                }
+            ]
+        },
+        "NotPickingUpDominios": {
+            "question": "The gate servo arm likely needs to move a little more towards the ***domino pick-up position***. Take out the gate servo, unscrew the arm, _physically remove the arm from the servo_ and put it back on but rotated slightly more ***counter-clockwise***. Before putting the bot back together, test it to make sure the arm moves almost fully horizontal one side to almost fully horizontal on the other side.\n\nDid this fix the issue?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "RequestHelpLogged"
+                }
+            ]
+        },
+        "NotReleasingDominos": {
+            "question": "The gate servo arm likely needs to move a little more towards the ***domino release position***. Take out the gate servo, unscrew the arm, _physically remove the arm from the servo_ and put it back on but rotated slightly more ***clockwise***. Before putting the bot back together, test it to make sure the arm moves almost fully horizontal one side to almost fully horizontal on the other side.\n\nDid this fix the issue?",
+            "answers": [
+                {
+                    "answer": "No",
+                    "nextQuestion": "RequestHelpLogged"
+                }
+            ]
+        },
+        // Help requests
+        "ReplacementMotor": {
+            "question": "You likely have a bad motor. Click `Download Log` and email help@crunchlabs.com for a replacement motor. You can also ask on the [Hack Pack discord](https://discord.gg/hackpack) for additional help."
+        },
+        "RequestHelpLogged": {
+            "question": "Click `Download Log`, then either ask on the [Hack Pack discord](https://discord.gg/hackpack) for the fastest reply, or email help@crunchlabs.com"
+        },
+        "RequestHelp": {
+            "question": "Get additional help on the [Hack Pack discord](https://discord.gg/hackpack) for the fastest reply, or email help@crunchlabs.com"
         }
     }
 }

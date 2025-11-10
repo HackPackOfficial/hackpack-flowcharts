@@ -41,7 +41,7 @@ export default function getMermaidFromJSON(chartJSON: TroubleshootingGuideProps,
             .replaceAll('"', '&quot;')
             .replaceAll('<', '&lt;')
             .replaceAll('>', '&gt;')
-            .replaceAll('`', '&#96;');
+            .replaceAll('`', '#96;');
 
         while (queue.length > 0) {
             round += 1;
