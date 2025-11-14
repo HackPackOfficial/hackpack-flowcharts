@@ -128,8 +128,8 @@ function startWatcher() {
 
     watcher.on('add', async (filePath) => {
         debugger
-        console.log(`\nNew file detected: ${filePath}`);
-        await renderChart(filePath);
+        console.log(`New file detected: ${filePath.split("\\").slice(-1)[0]},\tchange file to render`);
+        // await renderChart(filePath);
     });
 
     watcher.on('change', async (filePath) => {
