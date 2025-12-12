@@ -1,9 +1,11 @@
+
 {
     "id": "IDE",
     "title": "IDE Troubleshooting",
     "description": "Interactive guide to solve common IDE issues",
     "startingQuestion": "Title",
     "color": "#57899E",
+    "renderOptions": { "layout": "elk" },
     "questions": {
         "Title": {
             "question": "Have you watched the video on the [Start Here](https://ide.crunchlabs.com/downloads) page?",
@@ -24,11 +26,11 @@
                     "nextQuestion": "GoWatchVideo"
                 },
                 // Empty arrow for spacing, it loops better
-                {
-                    "answer": null,
-                    "nextQuestion": "OS",
-                    "customArrow": "~~~"
-                },
+                // {
+                //     "answer": null,
+                //     "nextQuestion": "OS",
+                //     "customArrow": "~~~"
+                // },
                 {
                     "answer": "Yes",
                     "nextQuestion": "OS",
@@ -49,16 +51,16 @@
             "question": "What Operating System do you use? (What type of computer)",
             "answers": [
                 {
+                    "answer": "Chromebook",
+                    "nextQuestion": "ProvidedCableCheck"
+                },
+                {
                     "answer": "Windows",
                     "nextQuestion": "Windows"
                 },
                 {
                     "answer": "Mac",
                     "nextQuestion": "Mac"
-                },
-                {
-                    "answer": "Chromebook",
-                    "nextQuestion": "Chromebook"
                 },
                 {
                     "answer": "Linux",
@@ -172,7 +174,7 @@
         },
 
         "DeviceCheckForDeviceMan" : {
-            "question": "Did you say that you used Windows or Mac?",
+            "question": "Did you say that you used Windows, Mac, or Chromebook?",
             "answers": [
                 {
                     // Windows needs to go over device manager
@@ -181,7 +183,7 @@
                 },
                 {
                     // Mac has nothing left to try
-                    "answer": "Mac",
+                    "answer": "Mac / Chromebook",
                     "nextQuestion": "RequestHelp"
                 }
             ]
