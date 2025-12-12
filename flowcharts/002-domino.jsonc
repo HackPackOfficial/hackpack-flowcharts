@@ -102,7 +102,7 @@
             ]
         },
         "DrivingIssueList": {
-            "question": "Which driving issue are you having?",
+            "question": "Which driving issue are you having? If neither work, select not working without the line.",
             "answers": [
                 {
                     "answer": "My bot isn't driving straight without the line.",
@@ -140,6 +140,19 @@
                 {
                     "answer": "Yes",
                     "nextQuestion": "UnpluggedSensorsWorks"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "SwapMotors"
+                }
+            ]
+        },
+        "SwapMotors": {
+            "question": "Try swapping the left and right motors on the H-Bridge. Does the motor that was not running before start running now?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "ReplacementMotor"
                 },
                 {
                     "answer": "No",
