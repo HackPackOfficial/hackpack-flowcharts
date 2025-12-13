@@ -5,6 +5,7 @@
     "startingQuestion": "Title",
     "color": "#e2aa4f",
     "image": "https://pi-space.crunchlabs.com/media/original/sand-garden.webp",
+    "renderOptions": { "layout": "elk" },
     "questions": {
         "Title": {
             "question": "My Sand Garden Troubleshooting",
