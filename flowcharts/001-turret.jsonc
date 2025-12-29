@@ -89,7 +89,7 @@
         },
         // L light is off, IR receiver-side issue
         "LLightOn": {
-            "question": "If the light is on, this means the arduino does not see the IR receiver. The most common cause of this is incorrect wiring.\nIf you are sure your wiring is right, there is a chance your breadboard is weak. To test this, pull the multicolored wires out of the breadboard and hold the tips of the purple wire directly against the pin marked D9. Does the green light turn off while doing this?",
+            "question": "If the light is on, this means the arduino does not see the IR receiver. The most common cause of this is incorrect wiring.\nIf you are sure your wiring is right, there is a chance your breadboard is weak. To test this, pull the multicolored wires out of the breadboard and hold the tips of the purple wire directly against the pin marked D9. Does the L light turn off while doing this?",
             "answers": [
                 {
                     "answer": "Yes",
@@ -105,7 +105,7 @@
             "question": "You likely have a defective IR receiver. Email help@crunchlabs.com for a replacement. You can also email or ask on the [Hack Pack discord](https://discord.gg/hackpack) for additional help."
         },
         "LLightBadBreadboard": {
-            "question": "This could potentially be a bad breadboard. Try putting the wires back where they go in the breadboard, purple in D9, make sure everything is good. Does the green light turn off now?",
+            "question": "This could potentially be a bad breadboard. Try putting the wires back where they go in the breadboard, purple in D9, make sure everything is good. Does the L light turn off now?",
             "answers": [
                 {
                     "answer": "No",
