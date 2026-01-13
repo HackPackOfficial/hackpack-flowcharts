@@ -5,7 +5,7 @@ const chokidar = require('chokidar');
 const { exec } = require('child_process');
 const { promisify } = require('util');
 const getMermaidFromJSON = require('../utils/parseMermaid').default;
-const stripJsonComments = require('strip-json-comments');
+const stripJsonComments = require('strip-json-comments').default;
 // const elkLayouts = require('@mermaid-js/layout-elk');
 
 const execAsync = promisify(exec);
@@ -127,7 +127,6 @@ function startWatcher() {
     const watcher = chokidar.watch(flowchartDir);
 
     watcher.on('add', async (filePath) => {
-        debugger
         console.log(`New file detected: ${filePath.split("\\").slice(-1)[0]},\tchange file to render`);
         // await renderChart(filePath);
     });

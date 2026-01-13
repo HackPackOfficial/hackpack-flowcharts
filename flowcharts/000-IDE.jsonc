@@ -8,6 +8,48 @@
     "renderOptions": { "layout": "elk" },
     "questions": {
         "Title": {
+            "question": "Which problem are you having?",
+            "answers": [
+                {
+                    "answer": "My box won't connect.",
+                    "nextQuestion": "VideoQuestion"
+                },
+                {
+                    "answer": "I'm getting an error message",
+                    "nextQuestion": "ErrorMessage"
+                }
+            ]
+        },
+        "ErrorMessage": {
+            "question": "Expand the 'Serial Monitor' panel at the bottom of the IDE. Look for log messages like these, which do you see?",
+            "answers": [
+                {
+                    "answer": "I see 'stk500 not in sync' errors.",
+                    "nextQuestion": "STK500"
+                },
+                {
+                    "answer": "I see normal Arduino errors about the code",
+                    "nextQuestion": "NormalErrors"
+                },
+                {
+                    "answer": "I am getting 'exit status: 1' errors with no other context.",
+                    "nextQuestion": "DeviceInUse"
+                }
+            ]
+        },
+        "DeviceInUse": {
+            "question": "First, look through the logs to make sure you are not getting any stk500 messages. If you are, go back and select that. To fix this error, make sure you only have one create agent running, and are not running any other IDEs (such as the Arduino IDE) in the background. Try disabling bluetooth and restarting your computer.", 
+            "answers": []
+        },
+        "STK500": {
+            "question": "To solve stk500, 1. make sure you are using the provided cable. If you are, try another data cable. If it also gives the same stk500 error, continue to the next point. 2. disable bluetooth and restart your computer. If it still gives the same stk500 error, continue to the next point. 3. the bootloader on your arduino is bad. Either you need to re-flash it using another arduino, or request a replacement from help@crunchlabs.com. You can also request help from the [Hack Pack discord](https://discord.gg/hackpack)",
+            "answers": []
+        },
+        "NormalErrors": {
+            "question": "You most likely need to fix the bugs in your code. You can click Restore Code on Level 2/3 in the top to reset the code to a working state.",
+            "answers": []
+        },
+        "VideoQuestion": {
             "question": "Have you watched the video on the [Start Here](https://ide.crunchlabs.com/downloads) page?",
             "blocks": [
                 {
@@ -24,6 +66,10 @@
                 {
                     "answer": "No",
                     "nextQuestion": "GoWatchVideo"
+                },
+                {
+                    "answer": "I use a Chromebook",
+                    "nextQuestion": "ProvidedCableCheck"
                 },
                 // Empty arrow for spacing, it loops better
                 // {
