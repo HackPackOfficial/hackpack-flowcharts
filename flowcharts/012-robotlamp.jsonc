@@ -1,0 +1,138 @@
+{
+    "id": "robolamp",
+    "title": "Robolamp Troubleshooting",
+    "description": "An interactive guide to solve common issues with your Robolamp.",
+    "startingQuestion": "Title",
+    "color": "#644e9b",
+    "renderOptions": { "layout": "elk" },
+    "questions": {
+        "Title": {
+            "question": "My robot successfully turned on! If not, check out our \"Robot isn't turning on\" guide, then come back here if you run into more issues. Which problem are you having?",
+            "answers": [
+                {
+                    "answer": "There's something weird about the way the robot is ascending/descending.",
+                    "nextQuestion": "AscendDescendIssue"
+                },
+                {
+                    "answer": "There's something weird about the way the bell is moving.",
+                    "nextQuestion": "BellMovementIssue"
+                }
+            ]
+        },
+
+        // ── Ascend/Descend branch ──────────────────────────────────────────
+
+        "AscendDescendIssue": {
+            "question": "Which of these best describes your issue?",
+            "answers": [
+                {
+                    "answer": "The robot is powered, but won't rise up from its lowest position when the \"up\" button is held.",
+                    "nextQuestion": "WontRise"
+                },
+                {
+                    "answer": "The motor can only ascend, not descend.",
+                    "nextQuestion": "OnlyAscends"
+                },
+                {
+                    "answer": "Pushing the up/down momentary switch \"up\" makes the robot descend, or \"down\" makes the robot ascend.",
+                    "nextQuestion": "SwitchReversed"
+                },
+                {
+                    "answer": "The lamp tries to descend to one of the presets, but just keeps going.",
+                    "nextQuestion": "KeepsDescending"
+                }
+            ]
+        },
+
+        "WontRise": {
+            "question": "Lift the bell a little with your other hand when you hold the \"up\" button to help the worm gear and worm mesh the first time the robot rises. Did that solve the problem?",
+            "answers": [
+                {
+                    "answer": "No, it's still stuck at its lowest position.",
+                    "nextQuestion": "StillStuck"
+                }
+            ]
+        },
+
+        "StillStuck": {
+            "question": "If the robot continues to get stuck at its lowest position, place your 6th adhesive rubber foot piece under the #1 aluminum tube on the base, right behind the black mount piece. This should prevent the robot from reaching a position that's too low for it to recover from. In the rare event that this is not enough, add material onto the rubber pad (pieces of tape, for example) until the robot cannot become stuck.",
+            "answers": []
+        },
+
+        "OnlyAscends": {
+            "question": "Check to make sure the blue and yellow wires from the motor driver aren't backwards in the breadboard.",
+            "answers": []
+        },
+
+        "SwitchReversed": {
+            "question": "Check the momentary switch's blue/purple wires to make sure they're not in the breadboard backwards. Reverse them in one location to see if that fixes the problem.",
+            "answers": []
+        },
+
+        "KeepsDescending": {
+            "question": "Roll the pinion gear with your finger a bit to see if the lamp stops moving. If it does, it means the potentiometer is just barely not hitting the threshold value for that position. Check to make sure the arrow on the lavender pinion gear on the potentiometer aligns with the arrow on the worm gear when the robot is at its lowest position. If it doesn't, pull the pinion gear out a bit, align it, and push it back in. If it does, you may need to set the preset the robot is trying to reach to a slightly higher height by long-pressing the number button for that preset while the robot is sitting a bit higher.",
+            "answers": []
+        },
+
+        // ── Bell movement branch ───────────────────────────────────────────
+
+        "BellMovementIssue": {
+            "question": "After a few seconds of inactivity, does the head of the lamp start to wander around?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "DistractedMood"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "NotWandering"
+                }
+            ]
+        },
+
+        "DistractedMood": {
+            "question": "Great! The lamp boots into \"distracted mood.\" Double-click the \"4\" to switch it into \"focused mood\" and it will stop moving around. Does there seem to be another issue with the bell's movement?",
+            "answers": [
+                {
+                    // Both Yes paths converge on BellOtherIssue to avoid layout drift
+                    "answer": "Yes, there's still another issue with the bell's movement.",
+                    "nextQuestion": "BellOtherIssue"
+                }
+            ]
+        },
+
+        "NotWandering": {
+            "question": "Either the servo motors aren't properly plugged in, or there's an issue with your Arduino. Upload the latest code from the IDE, or seek customer service help.",
+            "answers": [
+                {
+                    "answer": "There's still another issue with the bell's movement.",
+                    "nextQuestion": "BellOtherIssue"
+                }
+            ]
+        },
+
+        "BellOtherIssue": {
+            "question": "Which issue are you experiencing?",
+            "answers": [
+                {
+                    "answer": "Pushing the joystick forward and back make the head go left and right, and pushing the joystick left and right make the head nod up and down.",
+                    "nextQuestion": "JoystickSwapped"
+                },
+                {
+                    "answer": "The lamp can only look left and right, not up and down.",
+                    "nextQuestion": "OnlyLooksLeftRight"
+                }
+            ]
+        },
+
+        "JoystickSwapped": {
+            "question": "Check your purple and white wires to make sure they're not backwards. This can happen near the head, or in the breadboard. Check the joystick's green and purple data wires to make sure they're not reversed. Finally, check to make sure you plugged the correct servos into the \"pitch\" and \"yaw\" sockets.",
+            "answers": []
+        },
+
+        "OnlyLooksLeftRight": {
+            "question": "To test whether or not wires from the pitch servo have become damaged, swap the purple and white wires, either near the bell or in the breadboard. The joystick's up and down will then control the head's left and right. If the head can still only go left and right, not up and down, you know at least one of the pitch motor's wires has broken. Request a replacement pitch motor.",
+            "answers": []
+        }
+    }
+}
