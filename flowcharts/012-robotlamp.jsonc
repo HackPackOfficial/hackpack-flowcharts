@@ -5,6 +5,7 @@
     "startingQuestion": "Title",
     "color": "#644e9b",
     "renderOptions": { "layout": "elk" },
+    "image": "https://stage-pi-space.crunchlabs.com/media/original/robolamp.png",
     "questions": {
         "Title": {
             "question": "My robot successfully turned on! If not, check out our \"Robot isn't turning on\" guide, then come back here if you run into more issues. Which problem are you having?",
