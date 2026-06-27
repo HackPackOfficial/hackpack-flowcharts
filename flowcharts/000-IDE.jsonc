@@ -187,6 +187,15 @@
             "answers": [
                 {
                     "answer": "Yes",
+                    "nextQuestion": "EnableLocalhostChromePermission"
+                }
+            ]
+        },
+        "EnableLocalhostChromePermission" : {
+            "question": "On the IDE, to the left of the URL bar is an options icon. Click it, and confirm the permission \"Apps on Device\" is enabled, then try again. Does it work now?",
+            "answers": [
+                {
+                    "answer": "No",
                     "nextQuestion": "TryAnotherCable"
                 }
             ]
