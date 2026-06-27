@@ -1,0 +1,297 @@
+{
+    "id": "color-composer",
+    "title": "Color Composer Troubleshooting",
+    "description": "An interactive guide to solve common issues with your Color Composer.",
+    "startingQuestion": "Title",
+    "image": "https://ide-media.crunchlabs.com/media/color_composer_debfd6fb9d.png",
+    "color": "#d94d3b",
+    "renderOptions": { "layout": "elk" },
+    "questions": {
+        "Title": {
+            "question": "My Color Composer isn't working correctly. What is the issue?",
+            "answers": [
+                {
+                    "answer": "I can't program the microcontroller.",
+                    "nextQuestion": "CantProgram"
+                },
+                {
+                    "answer": "The device isn't making any sound.",
+                    "nextQuestion": "NoSound"
+                },
+                {
+                    "answer": "The music isn't responding to color — the notes stay the same.",
+                    "nextQuestion": "NoColorResponse"
+                },
+                {
+                    "answer": "The turntable isn't spinning.",
+                    "nextQuestion": "TableNotSpinning"
+                },
+                {
+                    "answer": "The sensor arm isn't working correctly.",
+                    "nextQuestion": "ArmNotWorking"
+                },
+                {
+                    "answer": "A button isn't working.",
+                    "nextQuestion": "ButtonNotWorking"
+                },
+                {
+                    "answer": "The sensor LEDs don't respond to the left button (B0).",
+                    "nextQuestion": "LEDsNotResponding"
+                }
+            ]
+        },
+
+        "CantProgram": {
+            "question": "Color Composer uses a new version of the breadboard that lets you program the microcontroller through the breadboard's USB connector! Plug the USB cable into the breadboard's USB connector. Make sure the power switch is turned ON, and then try uploading code. Did that work?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "Success"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "ContactSupport"
+                }
+            ]
+        },
+
+        "NoSound": {
+            "question": "Work through each of these steps:\n\n1. Make sure the **VOL knob** (the left knob on the front panel) is turned all the way clockwise.\n2. Make sure headphones are plugged **fully** into the output jack — they sometimes need an extra firm push.\n3. Is the sensor arm moving? On power-up it should swing toward the back of the device, stop, then move back over the table. If it isn't moving, visit the **Sensor Arm** section of this guide.\n4. Check that all wires into the breadboard are fully seated in the correct positions as shown on the punchout card.\n5. Press all JST connectors firmly to make sure they are fully seated.\n\nIs there audio now?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "Success"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "NoSoundReupload"
+                }
+            ]
+        },
+        "NoSoundReupload": {
+            "question": "Open the Hack Pack IDE and reupload the stock Color Composer code to the microcontroller. Is there audio now?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "Success"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "ContactSupport"
+                }
+            ]
+        },
+
+        "NoColorResponse": {
+            "question": "Place the color wheel on the table and turn the right knob to start the table spinning. Let it spin for one or two full revolutions. Does the music start changing?",
+            "answers": [
+                {
+                    "answer": "Yes, the music changed.",
+                    "nextQuestion": "CalibrationNormal"
+                },
+                {
+                    "answer": "No, the notes still stay the same.",
+                    "nextQuestion": "NoColorContinue"
+                }
+            ]
+        },
+        "CalibrationNormal": {
+            "question": "That's normal! The device needs a moment to calibrate after power-up.",
+            "answers": []
+        },
+        "NoColorContinue": {
+            "question": "Work through each of these steps:\n\n1. Press the **left button (B0)** to make sure the sensor LEDs are on. They cycle through five brightness levels — make sure they aren't set to off.\n2. Turn the **middle knob** away from center so the arm is positioned over the outer portion of the color wheel rather than the center.\n3. Press all JST connectors on the color sensor PCB firmly to make sure they are fully seated.\n\nIs the music responding to color now?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "Success"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "NoColorSystemsTest"
+                }
+            ]
+        },
+        "NoColorSystemsTest": {
+            "question": "Open the Hack Pack IDE and run the **Systems Test** program. Does the color sensor show readings that change as the table spins?",
+            "answers": [
+                {
+                    "answer": "Yes, the readings change.",
+                    "nextQuestion": "NoColorReupload"
+                },
+                {
+                    "answer": "No, the readings don't change.",
+                    "nextQuestion": "ContactSupportSensor"
+                }
+            ]
+        },
+        "NoColorReupload": {
+            "question": "Reupload the stock Color Composer code to the microcontroller and test again. Is the music responding to color now?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "Success"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "ContactSupport"
+                }
+            ]
+        },
+
+        "TableNotSpinning": {
+            "question": "Work through each of these steps:\n\n1. Check that the **drive disengagement slider** on the front panel is in the **AUTO** position, pushed fully toward the right and toward you. In the FREE position the motor runs but the table won't turn because the drive is mechanically disconnected.\n2. Turn the **right knob** well away from center in either direction. The center position stops the table.\n3. **Note:** If you held the table still while it was running, the device detects this and cuts the motor to hold position. To restart it, make sure the knob is off-center and give the table a gentle nudge.\n\nDoes the table spin now?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "Success"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "TableNotSpinningWiring"
+                }
+            ]
+        },
+        "TableNotSpinningWiring": {
+            "question": "Check that all wires from the motor driver into the breadboard are fully seated against the punchout card. Press all JST connectors firmly. Does the table spin now?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "Success"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "ContactSupport"
+                }
+            ]
+        },
+
+        "ArmNotWorking": {
+            "question": "On power-up the arm should move toward the back of the device, stop when it reaches the end of its travel, and then move back over the table. If the arm didn't do this, try **power cycling** the device first. Did that fix it?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "Success"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "ArmWhichIssue"
+                }
+            ]
+        },
+        "ArmWhichIssue": {
+            "question": "Which best describes the arm's behavior?",
+            "answers": [
+                {
+                    "answer": "The arm doesn't move at all.",
+                    "nextQuestion": "ArmNoMovement"
+                },
+                {
+                    "answer": "The arm doesn't complete its homing sequence — it stops before reaching the back stop, or gets stuck.",
+                    "nextQuestion": "ArmHoming"
+                },
+                {
+                    "answer": "The arm doesn't respond to the middle knob.",
+                    "nextQuestion": "ArmKnob"
+                }
+            ]
+        },
+        "ArmNoMovement": {
+            "question": "Check that all wires from the breadboard to the arm motor driver are fully seated against the punchout card. Press all JST connectors firmly. Does the arm move now?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "Success"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "ContactSupport"
+                }
+            ]
+        },
+        "ArmHoming": {
+            "question": "Press all JST connectors on the arm encoder firmly to ensure they are fully seated. Power cycle and test again. Did that fix it?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "Success"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "ArmScrewLoosen"
+                }
+            ]
+        },
+        "ArmScrewLoosen": {
+            "question": "The screw that connects the arm to the encoder may be too tight. Try loosening it slightly. Did that fix it?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "Success"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "ContactSupport"
+                }
+            ]
+        },
+        "ArmKnob": {
+            "question": "Check that the middle knob's wire is fully seated in the correct position on the breadboard per the punchout card. The knob has a small dead zone at its center — try turning it further in either direction. Does the arm respond now?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "Success"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "ContactSupport"
+                }
+            ]
+        },
+
+        "ButtonNotWorking": {
+            "question": "All three buttons share a single wire that connects to the breadboard. Check that this wire is fully seated in the correct position per the punchout card. Do the buttons work now?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "Success"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "ContactSupportReplacement"
+                }
+            ]
+        },
+
+        "LEDsNotResponding": {
+            "question": "B0 cycles through five LED brightness levels and wraps back to off. Press it **several times** to make sure it isn't just set to off. Then press the JST connector on the color sensor PCB firmly to make sure it is fully seated. Do the LEDs respond now?",
+            "answers": [
+                {
+                    "answer": "Yes",
+                    "nextQuestion": "Success"
+                },
+                {
+                    "answer": "No",
+                    "nextQuestion": "ContactSupportReplacement"
+                }
+            ]
+        },
+
+        "Success": {
+            "question": "Great! Your Color Composer is working correctly.",
+            "answers": []
+        },
+        "ContactSupport": {
+            "question": "Contact customer support for further help at help@crunchlabs.com or ask for help in the [Hack Pack discord](https://discord.gg/hackpack).",
+            "answers": []
+        },
+        "ContactSupportSensor": {
+            "question": "Contact customer support for a possible sensor replacement at help@crunchlabs.com",
+            "answers": []
+        },
+        "ContactSupportReplacement": {
+            "question": "Contact customer support for a replacement at help@crunchlabs.com",
+            "answers": []
+        }
+    }
+}
