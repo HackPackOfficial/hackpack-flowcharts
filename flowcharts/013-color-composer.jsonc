@@ -50,9 +50,13 @@
                 },
                 {
                     "answer": "No",
-                    "nextQuestion": "ContactSupport"
+                    "nextQuestion": "UseIDEFlowchart"
                 }
             ]
+        },
+        "UseIDEFlowchart": {
+            "question": "Please reference the IDE flowchart for further help programming the microcontroller.",
+            "answers": []
         },
 
         "NoSound": {
@@ -282,7 +286,7 @@
             "answers": []
         },
         "ContactSupport": {
-            "question": "Contact customer support for further help at help@crunchlabs.com or ask for help in the [Hack Pack discord](https://discord.gg/hackpack).",
+            "question": "Contact customer support for further help at help@crunchlabs.com or ask for help in the [Hack Pack discord](https://discord.gg/Bz8DSFjMFm).",
             "answers": []
         },
         "ContactSupportSensor": {

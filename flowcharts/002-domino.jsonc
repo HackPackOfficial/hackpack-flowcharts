@@ -230,13 +230,13 @@
         },
         // Help requests
         "ReplacementMotor": {
-            "question": "You likely have a bad motor. Click `Download Log` and email help@crunchlabs.com for a replacement motor. You can also ask on the [Hack Pack discord](https://discord.gg/hackpack) for additional help."
+            "question": "You likely have a bad motor. Click `Download Log` and email help@crunchlabs.com for a replacement motor. You can also ask on the [Hack Pack discord](https://discord.gg/Bz8DSFjMFm) for additional help."
         },
         "RequestHelpLogged": {
-            "question": "Click `Download Log`, then either ask on the [Hack Pack discord](https://discord.gg/hackpack) for the fastest reply, or email help@crunchlabs.com"
+            "question": "Click `Download Log`, then either ask on the [Hack Pack discord](https://discord.gg/Bz8DSFjMFm) for the fastest reply, or email help@crunchlabs.com"
         },
         "RequestHelp": {
-            "question": "Get additional help on the [Hack Pack discord](https://discord.gg/hackpack) for the fastest reply, or email help@crunchlabs.com"
+            "question": "Get additional help on the [Hack Pack discord](https://discord.gg/Bz8DSFjMFm) for the fastest reply, or email help@crunchlabs.com"
         }
     }
 }

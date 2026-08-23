@@ -102,7 +102,7 @@
             ]
         },
         "LLightBadReceiver": {
-            "question": "You likely have a defective IR receiver. Email help@crunchlabs.com for a replacement. You can also email or ask on the [Hack Pack discord](https://discord.gg/hackpack) for additional help."
+            "question": "You likely have a defective IR receiver. Email help@crunchlabs.com for a replacement. You can also email or ask on the [Hack Pack discord](https://discord.gg/Bz8DSFjMFm) for additional help."
         },
         "LLightBadBreadboard": {
             "question": "This could potentially be a bad breadboard. Try putting the wires back where they go in the breadboard, purple in D9, make sure everything is good. Does the L light turn off now?",
@@ -302,14 +302,14 @@
             ]
         },
         "BrokenCable": {
-            "question": "Your USB-C cable is defective, email help@crunchlabs.com for a replacement. You can also email or ask on the [Hack Pack discord](https://discord.gg/hackpack) for additional help."
+            "question": "Your USB-C cable is defective, email help@crunchlabs.com for a replacement. You can also email or ask on the [Hack Pack discord](https://discord.gg/Bz8DSFjMFm) for additional help."
         },
         // Final actions
         "ReplacementElectronicPart": {
-            "question": "You likely have a defective part. Email help@crunchlabs.com for a replacement. You can also email or ask on the [Hack Pack discord](https://discord.gg/hackpack) for additional help."
+            "question": "You likely have a defective part. Email help@crunchlabs.com for a replacement. You can also email or ask on the [Hack Pack discord](https://discord.gg/Bz8DSFjMFm) for additional help."
         },
         "RequestHelp": {
-            "question": "Click \"Download Log\", and send it along with your request for help. You can request help in the [Hack Pack discord](https://discord.gg/hackpack) or by emailing help@crunchlabs.com",
+            "question": "Click \"Download Log\", and send it along with your request for help. You can request help in the [Hack Pack discord](https://discord.gg/Bz8DSFjMFm) or by emailing help@crunchlabs.com",
             "answers": []
         }
     }

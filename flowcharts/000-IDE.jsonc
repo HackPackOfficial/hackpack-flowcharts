@@ -7,12 +7,13 @@
     "color": "#57899E",
     "renderOptions": { "layout": "elk" },
     "questions": {
+
         "Title": {
             "question": "Which problem are you having?",
             "answers": [
                 {
                     "answer": "My box won't connect.",
-                    "nextQuestion": "VideoQuestion"
+                    "nextQuestion": "UpdateBrowser"
                 },
                 {
                     "answer": "I'm getting an error message",
@@ -20,6 +21,7 @@
                 }
             ]
         },
+
         "ErrorMessage": {
             "question": "Expand the 'Serial Monitor' panel at the bottom of the IDE. Look for log messages like these, which do you see?",
             "answers": [
@@ -38,133 +40,37 @@
             ]
         },
         "DeviceInUse": {
-            "question": "First, look through the logs to make sure you are not getting any stk500 messages. If you are, go back and select that. To fix this error, make sure you only have one create agent running, and are not running any other IDEs (such as the Arduino IDE) in the background. Try disabling bluetooth and restarting your computer.", 
+            "question": "First, look through the logs to make sure you are not getting any stk500 messages. If you are, go back and select that. To fix this error, close all other CrunchLabs IDE tabs except one, and make sure you are not running any other IDEs (such as the Arduino IDE) in the background. Try disabling bluetooth and restarting your computer.", 
             "answers": []
         },
         "STK500": {
-            "question": "To solve stk500, 1. make sure you are using the provided cable. If you are, try another data cable. If it also gives the same stk500 error, continue to the next point. 2. disable bluetooth and restart your computer. If it still gives the same stk500 error, continue to the next point. 3. the bootloader on your arduino is bad. Either you need to re-flash it using another arduino, or request a replacement from help@crunchlabs.com. You can also request help from the [Hack Pack discord](https://discord.gg/hackpack)",
+            "question": "To solve stk500, 1. make sure you are using the provided cable. If you are, try another data cable. If it also gives the same stk500 error, continue to the next point. 2. disable bluetooth and restart your computer. If it still gives the same stk500 error, continue to the next point. 3. the bootloader on your arduino is bad. Either you need to re-flash it using another arduino, or request a replacement from help@crunchlabs.com. You can also request help from the [Hack Pack discord](https://discord.gg/Bz8DSFjMFm)",
             "answers": []
         },
         "NormalErrors": {
-            "question": "You most likely need to fix the bugs in your code. You can click Restore Code on Level 2/3 in the top to reset the code to a working state.",
+            "question": "You most likely need to fix the bugs in your code. You can click Restore Code in Advanced mode at the top to reset the code to a working state.",
             "answers": []
         },
-        "VideoQuestion": {
-            "question": "Have you watched the video on the [Start Here](https://ide.crunchlabs.com/downloads) page?",
-            "blocks": [
-                {
-                    "type": "video",
-                    "id": "downloads-video",
-                    "content": {
-                        "url": "https://www.youtube.com/embed/rA9CwUOBBgE?si=1KesjPL61WYOJzu",
-                        "light": false,
-                        "controls": true
-                    }
-                }
-            ],
+
+        "UpdateBrowser": {
+            "question": "Are you running the latest stable version of Chrome / Firefox? Confirm by going to three-bar menu in top right > Help > About. If an update is available, update, restart the browser, refresh the IDE, and try again.",
             "answers": [
                 {
-                    "answer": "No",
-                    "nextQuestion": "GoWatchVideo"
+                    "answer": "My browser is up to date, the problem persists.",
+                    "nextQuestion": "ExtensionCheck"
                 },
                 {
-                    "answer": "I use a Chromebook",
-                    "nextQuestion": "ProvidedCableCheck"
-                },
-                // Empty arrow for spacing, it loops better
-                // {
-                //     "answer": null,
-                //     "nextQuestion": "OS",
-                //     "customArrow": "~~~"
-                // },
-                {
-                    "answer": "Yes",
-                    "nextQuestion": "OS",
-                    "customArrow": "--->"
+                    "answer": "I am using a different browser.",
+                    "nextQuestion": "UseChromeOrFirefox"
                 }
             ]
         },
-        "GoWatchVideo": {
-            "question": "Please watch the video on the [Start Here](https://ide.crunchlabs.com/downloads) page before proceeding.",
-            "answers": [
-                {
-                    "answer": "Proceed",
-                    "nextQuestion": "Title"
-                }
-            ]
-        },
-        "OS": {
-            "question": "What Operating System do you use? (What type of computer)",
-            "answers": [
-                {
-                    "answer": "Chromebook",
-                    "nextQuestion": "ProvidedCableCheck"
-                },
-                {
-                    "answer": "Windows",
-                    "nextQuestion": "Windows"
-                },
-                {
-                    "answer": "Mac",
-                    "nextQuestion": "Mac"
-                },
-                {
-                    "answer": "Linux",
-                    "nextQuestion": "Linux"
-                },
-                {
-                    "answer": "Other",
-                    "nextQuestion": "Other"
-                }
-            ]
-        },
-        "Chromebook": {
-            "question": "Chromebooks are not officially supported. However, you can still use the Arduino Cloud if you are willing to figure things out yourself.",
+        "UseChromeOrFirefox": {
+            "question": "You must use either Chrome or Firefox to run the IDE. Some other browsers (such as Brave and Edge) may work, but should not be used while troubleshooting connection issues. Please try again with Chrome or Firefox.",
             "answers": []
         },
-        "Linux": {
-            "question": "Request help in the [Hack Pack discord](https://discord.gg/hackpack) or by emailing help@crunchlabs.com",
-            "answers": []
-        },
-        "Other": {
-            "question": "Request help in the [Hack Pack discord](https://discord.gg/hackpack) or by emailing help@crunchlabs.com",
-            "answers": []
-        },
-        "Windows": {
-            "question": "If you click the up arrow near the wifi icon, do you see a white circle with the Hack Pack logo?",
-            "answers": [
-                {
-                    "answer": "No",
-                    "nextQuestion": "WindowsInstallAgent"
-                },
-                {
-                    "answer": "Yes",
-                    "nextQuestion": "BrowserCheck"
-                }
-            ]
-        },
-        "Mac": {
-            "question": "Do you see a white circle with the hack pack logo on the right side of the bar at the top of your screen?",
-            "answers": [
-                {
-                    "answer": "No",
-                    "nextQuestion": "MacInstallAgent"
-                },
-                {
-                    "answer": "Yes",
-                    "nextQuestion": "BrowserCheck"
-                }
-            ]
-        },
-        "WindowsInstallAgent": {
-            "question": "If you have already installed the create agent as in the video, you likely need to run it as administrator. Open windows search, type \"Crunchlabs\", right-click the item ***without*** the word \"setup\", and click \"Run As Administrator\"",
-            "answers": []
-        },
-        "MacInstallAgent": {
-            "question": "Refer to the downloads video for how to install the create agent on mac. If you need additional help, ask in the [Hack Pack discord](https://discord.gg/hackpack) or email help@crunchlabs.com",
-            "answers": []
-        },
-        "BrowserCheck": {
+
+        "ExtensionCheck": {
             "question": "Are you using Chrome as your browser, and have you disabled any content-blocking extensions (adblockers, privacy extensions)?",
             "answers": [
                 {
@@ -173,6 +79,7 @@
                 }
             ]
         },
+
         "ProvidedCableCheck": {
             "question": "Are you using the provided USB-C to USB-A cable?",
             "answers": [
@@ -223,13 +130,13 @@
             "answers": [
                 {
                     "answer": "No",
-                    "nextQuestion": "DeviceCheckForDeviceMan"
+                    "nextQuestion": "OSCheck"
                 }
             ]
         },
 
-        "DeviceCheckForDeviceMan" : {
-            "question": "Did you say that you used Windows, Mac, or Chromebook?",
+        "OSCheck" : {
+            "question": "What Operating System do you use?",
             "answers": [
                 {
                     // Windows needs to go over device manager
@@ -240,9 +147,27 @@
                     // Mac has nothing left to try
                     "answer": "Mac / Chromebook",
                     "nextQuestion": "RequestHelp"
+                },
+                {
+                    "answer": "Linux",
+                    "nextQuestion": "RequestHelp"
+                },
+                {
+                    "answer": "Other",
+                    "nextQuestion": "RequestHelp"
                 }
+                
             ]
         },
+        "Linux": {
+            "question": "Request help in the [Hack Pack discord](https://discord.gg/Bz8DSFjMFm) or by emailing help@crunchlabs.com",
+            "answers": []
+        },
+        "Other": {
+            "question": "Request help in the [Hack Pack discord](https://discord.gg/Bz8DSFjMFm) or by emailing help@crunchlabs.com",
+            "answers": []
+        },
+
         "WindowsDeviceManager": {
             "question": "Try opening Device Manager, plug in the arduino, look for anything under USBs and Ports & Coms sections that is marked unknown, other, or USB Serial that could possibly be the arduino. Once you find something you think is it unplug the arduino, if it disappears after a second, then you found it. What is it listed at?",
             "answers": [
@@ -256,7 +181,7 @@
                 }
             ]
         },
-        "HasDriver": { 
+        "HasDriver": {
             "question": "Your device is recognizing the Arduino, so the cable, drivers, and ports are all good. Make sure you properly did all the above steps, try running your browser in Incognito mode so it starts without extensions.",
             "answers": [
                 { 
@@ -266,7 +191,7 @@
             ]
         }, 
         "WindowsInstallDriver": {
-            "question": "Try installing the CH340 driver from [here](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all#drivers-if-you-need-them). Restart your computer *(this is actually necessary)*. Does it show up as **USB-SERIAL CH340** now?",
+            "question": "Try installing the CH340 driver from [here](https://www.wch-ic.com/downloads/CH341SER_ZIP.html). Download the driver package, unzip it, run SETUP.EXE as administrator. When it is finished, restart your computer *(this is actually necessary)*. Does it show up as **USB-SERIAL CH340** now?",
             "answers": [
                 { 
                     "answer": "No",
@@ -274,8 +199,9 @@
                 }
             ]
         },
+
         "RequestHelp": {
-            "question": "Request help in the [Hack Pack discord](https://discord.gg/hackpack) or by emailing help@crunchlabs.com",
+            "question": "Request help in the [Hack Pack discord](https://discord.gg/Bz8DSFjMFm) or by emailing help@crunchlabs.com",
             "answers": []
         }
     }
