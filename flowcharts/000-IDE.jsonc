@@ -117,7 +117,7 @@
             ]
         },
         "Restart": {
-            "question": "Disable bluetooth on your computer and restart it. Windows users, start the agent as administrator again. Does it work now?",
+            "question": "Disable bluetooth on your computer and restart it. Does it work now?",
             "answers": [
                 {
                     "answer": "No",
